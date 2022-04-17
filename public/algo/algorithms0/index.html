@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon3/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon3/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon3/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon3/android-chrome-384x384.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhenruyi.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":20,"offset":45},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":null,"post_header":null,"post_body":null,"coll_header":null,"sidebar":"fadeInDown"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="《算法》这本书的介绍、全书的框架，以及笔记的索引。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《算法》笔记：全书框架">
+<meta property="og:url" content="https://zhenruyi.github.io/algo/algorithms0/index.html">
+<meta property="og:site_name" content="zhenruyi">
+<meta property="og:description" content="《算法》这本书的介绍、全书的框架，以及笔记的索引。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-11T07:00:29.000Z">
+<meta property="article:modified_time" content="2022-04-16T23:12:45.453Z">
+<meta property="article:author" content="luyizheng">
+<meta property="article:tag" content="learn">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://zhenruyi.github.io/algo/algorithms0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://zhenruyi.github.io/algo/algorithms0/","path":"algo/algorithms0/","title":"《算法》笔记：全书框架"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>《算法》笔记：全书框架 | zhenruyi</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zhenruyi</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">done is better than perfect</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">7</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">34</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%AE%97%E6%B3%95"><span class="nav-text">1 算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%9C%AC%E4%B9%A6%E6%A1%86%E6%9E%B6"><span class="nav-text">2 本书框架</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AC%AC1%E7%AB%A0%EF%BC%9A%E5%9F%BA%E7%A1%80"><span class="nav-text">第1章：基础</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AC%AC2%E7%AB%A0%EF%BC%9A%E6%8E%92%E5%BA%8F"><span class="nav-text">第2章：排序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AC%AC3%E7%AB%A0%EF%BC%9A%E6%9F%A5%E6%89%BE"><span class="nav-text">第3章：查找</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AC%AC4%E7%AB%A0%EF%BC%9A%E5%9B%BE"><span class="nav-text">第4章：图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AC%AC5%E7%AB%A0%EF%BC%9A%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-text">第5章：字符串</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E8%83%8C%E6%99%AF"><span class="nav-text">第6章：背景</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%88%91%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="nav-text">3 我的学习笔记</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="luyizheng"
+      src="/images/avatar2.jpg">
+  <p class="site-author-name" itemprop="name">luyizheng</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhenruyi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhenruyi" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/jugenlu" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;jugenlu" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://m.weibo.cn/u/3017941811" title="Weibo → https:&#x2F;&#x2F;m.weibo.cn&#x2F;u&#x2F;3017941811" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:cs19b022@163.com" title="E-Mail → mailto:cs19b022@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/24837978" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;24837978" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>Bilibili</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://zhenruyi.github.io/images/OfficialAccountCode.jpg" title="WechatOfficial → https:&#x2F;&#x2F;zhenruyi.github.io&#x2F;images&#x2F;OfficialAccountCode.jpg"><i class="fab fa-weixin fa-fw"></i>WechatOfficial</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      they are very lovely
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/672346917/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;672346917&#x2F;" rel="noopener" target="_blank">AVA向晚</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/672353429/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;672353429&#x2F;" rel="noopener" target="_blank">Bella贝拉</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/351609538/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;351609538&#x2F;" rel="noopener" target="_blank">Carol珈乐</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/672328094/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;672328094&#x2F;" rel="noopener" target="_blank">Diana嘉然</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/672342685/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;672342685&#x2F;" rel="noopener" target="_blank">Eileen乃琳</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zhenruyi.github.io/algo/algorithms0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+      <meta itemprop="name" content="luyizheng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhenruyi">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="《算法》笔记：全书框架 | zhenruyi">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          《算法》笔记：全书框架
+        </h1>
+
+        <div class="post-meta-container">
+
+        
+
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-04-11 15:00:29" itemprop="dateCreated datePublished" datetime="2022-04-11T15:00:29+08:00">2022-04-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-04-17 07:12:45" itemprop="dateModified" datetime="2022-04-17T07:12:45+08:00">2022-04-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/algo/" itemprop="url" rel="index"><span itemprop="name">algo</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>《算法》这本书的介绍、全书的框架，以及笔记的索引。</p>
+<span id="more"></span>
+
+
+
+<h4 id="1-算法"><a href="#1-算法" class="headerlink" title="1 算法"></a>1 算法</h4><p>计算机程序：实现一种已有的<strong>方法</strong>来解决某个问题。</p>
+<p>这种方法和编程语言无关，是这种方法而非程序本身描述了解决问题的步骤。</p>
+<hr>
+<h4 id="2-本书框架"><a href="#2-本书框架" class="headerlink" title="2 本书框架"></a>2 本书框架</h4><h5 id="第1章：基础"><a href="#第1章：基础" class="headerlink" title="第1章：基础"></a>第1章：基础</h5><p>讲解在随后章节中用来实现、分析和比较算法的基本原则和方法。</p>
+<h5 id="第2章：排序"><a href="#第2章：排序" class="headerlink" title="第2章：排序"></a>第2章：排序</h5><p>有序地重新排列数组中的元素是非常重要的基础算法。研究各种排序算法，包括插入排序、选择排序、希尔排序、快速排序、归并排序和堆排序。同时还会讨论另外一些算法，用于解决几个和排序相关的问题，例如优先队列、选举以及归并。</p>
+<h5 id="第3章：查找"><a href="#第3章：查找" class="headerlink" title="第3章：查找"></a>第3章：查找</h5><p>从庞大的数据集中找到指定的条目十分重要。基本的和高级的查找算法，包括二叉查找树、平衡查找树和散列表。</p>
+<h5 id="第4章：图"><a href="#第4章：图" class="headerlink" title="第4章：图"></a>第4章：图</h5><p>图的主要内容是对象和它的连接，连接可能有权重和方向。利用图可以为大量重要而困难的问题建模。研究深度优先搜索、广度优先搜索、连通性问题和若干那其他算法和应用。</p>
+<h5 id="第5章：字符串"><a href="#第5章：字符串" class="headerlink" title="第5章：字符串"></a>第5章：字符串</h5><p>字符串是现代应用程序中的重要数据类型。研究一系列字符串的算法，首先对字符串进行排序和查找的快速算法，然后是子字符串查找、正则表达式模式匹配和数据压缩算法。</p>
+<h5 id="第6章：背景"><a href="#第6章：背景" class="headerlink" title="第6章：背景"></a>第6章：背景</h5><p>前沿研究。</p>
+<hr>
+<h4 id="3-我的学习笔记"><a href="#3-我的学习笔记" class="headerlink" title="3 我的学习笔记"></a>3 我的学习笔记</h4><p>原书使用的是Java语言。我会使用Go或者C++重新复现。</p>
+<p><a href="https://zhenruyi.github.io/algo/algorithms1/">第1章：基础</a></p>
+<p><a href="https://zhenruyi.github.io/algo/algorithms2/">第2章：排序</a></p>
+<p><a href="https://zhenruyi.github.io/algo/algorithms3/">第3章：查找</a></p>
+<p><a href="https://zhenruyi.github.io/algo/algorithms4/">第4章：图</a></p>
+<p><a href="https://zhenruyi.github.io/algo/algorithms5/">第5章：字符串</a></p>
+<p><a href="https://zhenruyi.github.io/algo/algorithms6/">第6章：背景</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/learn/" rel="tag"># learn</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/tech/hexo3/" rel="prev" title="Hexo一些资料的备份">
+                  <i class="fa fa-chevron-left"></i> Hexo一些资料的备份
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/algo/algorithms1/" rel="next" title="《算法》笔记：第1章  基础">
+                  《算法》笔记：第1章  基础 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">luyizheng</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdn.jsdelivr.net/npm/pdfobject@2.2.7/pdfobject.min.js","integrity":"sha256-ph3Dk89VmuTVXG6x/RDzk53SU9LPdAh1tpv0UvnDZ2I="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

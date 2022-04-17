@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon3/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon3/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon3/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon3/android-chrome-384x384.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhenruyi.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":20,"offset":45},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":null,"post_header":null,"post_body":null,"coll_header":null,"sidebar":"fadeInDown"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="《算法》第3章：查找。 符号表，二叉查找树，平衡查找树，散列表，应用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《算法》笔记：第3章  查找">
+<meta property="og:url" content="https://zhenruyi.github.io/algo/algorithms3/index.html">
+<meta property="og:site_name" content="zhenruyi">
+<meta property="og:description" content="《算法》第3章：查找。 符号表，二叉查找树，平衡查找树，散列表，应用。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zhenruyi.github.io/images/algo-learn03Algorithms03Search1.png">
+<meta property="og:image" content="https://zhenruyi.github.io/images/algo-learn03Algorithms03Search2.png">
+<meta property="og:image" content="https://zhenruyi.github.io/images/algo-learn03Algorithms03Search3.png">
+<meta property="og:image" content="https://zhenruyi.github.io/images/algo-learn03Algorithms03Search4.png">
+<meta property="og:image" content="https://zhenruyi.github.io/images/algo-learn03Algorithms03Search5.png">
+<meta property="og:image" content="https://zhenruyi.github.io/images/algo-learn03Algorithms03Search6.png">
+<meta property="og:image" content="https://zhenruyi.github.io/images/algo-learn03Algorithms03Search7.png">
+<meta property="og:image" content="https://zhenruyi.github.io/images/algo-learn03Algorithms03Search8.png">
+<meta property="og:image" content="https://zhenruyi.github.io/images/algo-learn03Algorithms03Search9.png">
+<meta property="article:published_time" content="2022-04-14T00:33:39.000Z">
+<meta property="article:modified_time" content="2022-04-16T23:04:12.258Z">
+<meta property="article:author" content="luyizheng">
+<meta property="article:tag" content="learn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhenruyi.github.io/images/algo-learn03Algorithms03Search1.png">
+
+
+<link rel="canonical" href="https://zhenruyi.github.io/algo/algorithms3/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://zhenruyi.github.io/algo/algorithms3/","path":"algo/algorithms3/","title":"《算法》笔记：第3章  查找"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>《算法》笔记：第3章  查找 | zhenruyi</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zhenruyi</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">done is better than perfect</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">7</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">34</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E7%AC%A6%E5%8F%B7%E8%A1%A8"><span class="nav-text">3.1 符号表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-1-API"><span class="nav-text">3.1.1 API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-2-%E6%9C%89%E5%BA%8F%E7%AC%A6%E5%8F%B7%E8%A1%A8"><span class="nav-text">3.1.2 有序符号表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-3-%E7%94%A8%E4%BE%8B%E4%B8%BE%E4%BE%8B"><span class="nav-text">3.1.3 用例举例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-4-%E6%97%A0%E5%BA%8F%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%A1%BA%E5%BA%8F%E6%9F%A5%E6%89%BE"><span class="nav-text">3.1.4 无序链表中的顺序查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-5-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="nav-text">3.1.5 有序数组中的二分查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-6-%E5%AF%B9%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%9A%84%E5%88%86%E6%9E%90"><span class="nav-text">3.1.6 对二分查找的分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-7-%E9%A2%84%E8%A7%88"><span class="nav-text">3.1.7 预览</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91"><span class="nav-text">3.2 二叉查找树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-1-%E5%9F%BA%E6%9C%AC%E5%AE%9E%E7%8E%B0"><span class="nav-text">3.2.1 基本实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-2-%E5%88%86%E6%9E%90"><span class="nav-text">3.2.2 分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-3-%E6%9C%89%E5%BA%8F%E6%80%A7%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%B9%E6%B3%95%E4%B8%8E%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C"><span class="nav-text">3.2.3 有序性相关的方法与删除操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E5%B9%B3%E8%A1%A1%E6%9F%A5%E6%89%BE%E6%A0%91"><span class="nav-text">3.3 平衡查找树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-1-2-3%E6%9F%A5%E6%89%BE%E6%A0%91"><span class="nav-text">3.3.1 _2-3查找树</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-1-1-%E6%9F%A5%E6%89%BE"><span class="nav-text">3.3.1.1 查找</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-1-2-%E5%90%912-%E7%BB%93%E7%82%B9%E6%8F%92%E5%85%A5%E6%96%B0%E9%94%AE"><span class="nav-text">3.3.1.2 向2-结点插入新键</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-1-3-%E5%90%91%E4%B8%80%E6%A3%B5%E5%8F%AA%E5%90%AB%E6%9C%89%E4%B8%80%E4%B8%AA3-%E7%BB%93%E7%82%B9%E7%9A%84%E6%A0%91%E6%8F%92%E5%85%A5%E6%96%B0%E9%94%AE"><span class="nav-text">3.3.1.3 向一棵只含有一个3-结点的树插入新键</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-1-4-%E5%90%91%E4%B8%80%E4%B8%AA%E7%88%B6%E7%BB%93%E7%82%B9%E4%B8%BA2-%E7%BB%93%E7%82%B9%E7%9A%843-%E7%BB%93%E7%82%B9%E6%8F%92%E5%85%A5%E6%96%B0%E9%94%AE"><span class="nav-text">3.3.1.4 向一个父结点为2-结点的3-结点插入新键</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-1-5-%E5%90%91%E4%B8%80%E4%B8%AA%E7%88%B6%E7%BB%93%E7%82%B9%E4%B8%BA3-%E7%BB%93%E7%82%B9%E7%9A%843-%E7%BB%93%E7%82%B9%E6%8F%92%E5%85%A5%E6%96%B0%E9%94%AE"><span class="nav-text">3.3.1.5 向一个父结点为3-结点的3-结点插入新键</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-1-6-%E5%88%86%E8%A7%A3%E6%A0%B9%E7%BB%93%E7%82%B9"><span class="nav-text">3.3.1.6 分解根结点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-1-7-%E5%B1%80%E9%83%A8%E5%8F%98%E6%8D%A2"><span class="nav-text">3.3.1.7 局部变换</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-1-8-%E5%85%A8%E5%B1%80%E6%80%A7%E8%B4%A8"><span class="nav-text">3.3.1.8 全局性质</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-2-%E7%BA%A2%E9%BB%91%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91"><span class="nav-text">3.3.2 红黑二叉查找树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-3-%E5%AE%9E%E7%8E%B0"><span class="nav-text">3.3.3 实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-4-%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C"><span class="nav-text">3.3.4 删除操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-5-%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-text">3.3.5 红黑树的性质</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%E6%95%A3%E5%88%97%E8%A1%A8"><span class="nav-text">3.4 散列表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-1-%E6%95%A3%E5%88%97%E5%87%BD%E6%95%B0"><span class="nav-text">3.4.1 散列函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-2-%E5%9F%BA%E4%BA%8E%E6%8B%89%E9%93%BE%E6%B3%95%E7%9A%84%E6%95%A3%E5%88%97%E8%A1%A8"><span class="nav-text">3.4.2 基于拉链法的散列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-3-%E5%9F%BA%E4%BA%8E%E7%BA%BF%E6%80%A7%E6%8E%A2%E6%B5%8B%E6%B3%95%E7%9A%84%E6%95%A3%E5%88%97%E8%A1%A8"><span class="nav-text">3.4.3 基于线性探测法的散列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-4-%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E5%A4%A7%E5%B0%8F"><span class="nav-text">3.4.4 调整数组大小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-5-%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8"><span class="nav-text">3.4.5 内存使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-%E5%BA%94%E7%94%A8"><span class="nav-text">3.5 应用</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="luyizheng"
+      src="/images/avatar2.jpg">
+  <p class="site-author-name" itemprop="name">luyizheng</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhenruyi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhenruyi" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/jugenlu" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;jugenlu" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://m.weibo.cn/u/3017941811" title="Weibo → https:&#x2F;&#x2F;m.weibo.cn&#x2F;u&#x2F;3017941811" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:cs19b022@163.com" title="E-Mail → mailto:cs19b022@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/24837978" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;24837978" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>Bilibili</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://zhenruyi.github.io/images/OfficialAccountCode.jpg" title="WechatOfficial → https:&#x2F;&#x2F;zhenruyi.github.io&#x2F;images&#x2F;OfficialAccountCode.jpg"><i class="fab fa-weixin fa-fw"></i>WechatOfficial</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      they are very lovely
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/672346917/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;672346917&#x2F;" rel="noopener" target="_blank">AVA向晚</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/672353429/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;672353429&#x2F;" rel="noopener" target="_blank">Bella贝拉</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/351609538/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;351609538&#x2F;" rel="noopener" target="_blank">Carol珈乐</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/672328094/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;672328094&#x2F;" rel="noopener" target="_blank">Diana嘉然</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/672342685/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;672342685&#x2F;" rel="noopener" target="_blank">Eileen乃琳</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zhenruyi.github.io/algo/algorithms3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+      <meta itemprop="name" content="luyizheng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhenruyi">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="《算法》笔记：第3章  查找 | zhenruyi">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          《算法》笔记：第3章  查找
+        </h1>
+
+        <div class="post-meta-container">
+
+        
+
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-04-14 08:33:39" itemprop="dateCreated datePublished" datetime="2022-04-14T08:33:39+08:00">2022-04-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-04-17 07:04:12" itemprop="dateModified" datetime="2022-04-17T07:04:12+08:00">2022-04-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/algo/" itemprop="url" rel="index"><span itemprop="name">algo</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>《算法》第3章：查找。</p>
+<p>符号表，二叉查找树，平衡查找树，散列表，应用。</p>
+<span id="more"></span>
+
+
+
+<hr>
+<p>使用符号表这个词来描述一张抽象的表格，将信息（值）存储在其中，然后按照指定的键来搜索并获取这些信息。键和值的具体意义取决于不同的应用。</p>
+<p>符号表有时被称为字典，符号表有时又叫索引。本章内容：</p>
+<ul>
+<li><p>基本的API和两种重要的实现。</p>
+</li>
+<li><p>三种经典的数据类型来实现高效的符号表：二叉查找树、红黑树和散列表。</p>
+</li>
+<li><p>总结，它们的若干扩展和应用。</p>
+</li>
+</ul>
+<hr>
+<h3 id="3-1-符号表"><a href="#3-1-符号表" class="headerlink" title="3.1 符号表"></a>3.1 符号表</h3><p>符号表是一种存储键值对的数据结构，支持两种操作：插入(put)和查找(get)。</p>
+<p>符号表最主要的目的就是将一个键和一个值联系起来。</p>
+<h4 id="3-1-1-API"><a href="#3-1-1-API" class="headerlink" title="3.1.1 API"></a>3.1.1 API</h4><p>所有的实现遵循以下规则：</p>
+<ul>
+<li>每个键只对应一个值，不允许存在重复的键；</li>
+<li>插入的键值已存在时，会覆盖旧值；</li>
+<li>键不能为空，值可以为空。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>SearchTable</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>put(key, value)</td>
+<td>将键值对存入表中</td>
+</tr>
+<tr>
+<td>get(key) value</td>
+<td>获取键对应的值</td>
+</tr>
+<tr>
+<td>delete(key)</td>
+<td>删除</td>
+</tr>
+<tr>
+<td>contains(key) bool</td>
+<td>是否有对应的值</td>
+</tr>
+<tr>
+<td>isEnpty() bool</td>
+<td>是否为空</td>
+</tr>
+<tr>
+<td>size() int</td>
+<td>键值对数量</td>
+</tr>
+<tr>
+<td>keys() []interface{}</td>
+<td>表中所有键的集合</td>
+</tr>
+</tbody></table>
+<h4 id="3-1-2-有序符号表"><a href="#3-1-2-有序符号表" class="headerlink" title="3.1.2 有序符号表"></a>3.1.2 有序符号表</h4><p>对顺序有要求，符号表会保持键的有序并大大扩展它的API。定义一个有序符号表：</p>
+<ul>
+<li>最大键max和最小键min：查询其中的最大键和最小键，删除最大键和最小键。优先队列也能实现这些操作，但符号表不能存在重复的键，而且支持的操作更多。</li>
+<li>向上取整ceiling和向下取整floor：向下取整，找出小于等于该键的最大键；向上取整，找出大于等于该键的最小键。</li>
+<li>排名rank和选择select：排名，找出小于该键的数量；选择，找出排名为k的键。</li>
+<li>范围查找keys：在范围中的键。</li>
+</ul>
+<p>在基础API的基础上，添加下列方法：</p>
+<table>
+<thead>
+<tr>
+<th>OrderedSearchTable</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>min() key</td>
+<td>最小的键</td>
+</tr>
+<tr>
+<td>max() key</td>
+<td>最大的键</td>
+</tr>
+<tr>
+<td>delMin()</td>
+<td>删除最小的</td>
+</tr>
+<tr>
+<td>delMax()</td>
+<td></td>
+</tr>
+<tr>
+<td>floor(key) key</td>
+<td>向下取整</td>
+</tr>
+<tr>
+<td>ceiling(key) key</td>
+<td></td>
+</tr>
+<tr>
+<td>rank(key) int</td>
+<td>排名</td>
+</tr>
+<tr>
+<td>select(int) key</td>
+<td>选择排名为该数值的键</td>
+</tr>
+<tr>
+<td>size(low, high) int</td>
+<td>范围内有多少个键</td>
+</tr>
+<tr>
+<td>keys(low, high) keys</td>
+<td>返回范围内所有的键</td>
+</tr>
+</tbody></table>
+<p>API方法的默认实现：</p>
+<p><img src="https://zhenruyi.github.io/images/algo-learn03Algorithms03Search1.png"></p>
+<p><img src="https://zhenruyi.github.io/images/algo-learn03Algorithms03Search2.png"></p>
+<h4 id="3-1-3-用例举例"><a href="#3-1-3-用例举例" class="headerlink" title="3.1.3 用例举例"></a>3.1.3 用例举例</h4><p>混合使用查找和插入操作。大量不同的键。查找操作比插入操作多得多。</p>
+<h4 id="3-1-4-无序链表中的顺序查找"><a href="#3-1-4-无序链表中的顺序查找" class="headerlink" title="3.1.4 无序链表中的顺序查找"></a>3.1.4 无序链表中的顺序查找</h4><p>未命中的查找和插入操作都需要N次比较。命中的查找需要N次比较。向一个空表中插入N个不同的键需要~N^2/2次比较。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Node <span class="keyword">struct</span> &#123;</span><br><span class="line">	key <span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">	val <span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">	nxt *Node</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewNode</span><span class="params">(k, v <span class="keyword">interface</span>&#123;&#125;, n *Node)</span></span> *Node &#123;</span><br><span class="line">	<span class="keyword">return</span> &amp;Node&#123;</span><br><span class="line">		key: k,</span><br><span class="line">		val: v,</span><br><span class="line">		nxt: n,</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> SequentialSearchST <span class="keyword">struct</span> &#123;</span><br><span class="line">	first *Node</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *SequentialSearchST)</span></span> Get(key <span class="keyword">interface</span>&#123;&#125;) <span class="keyword">interface</span>&#123;&#125; &#123;</span><br><span class="line">	<span class="keyword">for</span> x := s.first; x != <span class="literal">nil</span>; x = x.nxt &#123;</span><br><span class="line">		<span class="keyword">if</span> x.key == key &#123;</span><br><span class="line">			<span class="keyword">return</span> x.val</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *SequentialSearchST)</span></span> Put(key, val <span class="keyword">interface</span>&#123;&#125;) &#123;</span><br><span class="line">	<span class="keyword">for</span> x := s.first; x != <span class="literal">nil</span>; x = x.nxt &#123;</span><br><span class="line">		<span class="keyword">if</span> x.key == key &#123;</span><br><span class="line">			x.val = val</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	s.first = NewNode(key, val, s.first)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-1-5-有序数组中的二分查找"><a href="#3-1-5-有序数组中的二分查找" class="headerlink" title="3.1.5 有序数组中的二分查找"></a>3.1.5 有序数组中的二分查找</h4><p>使用一对平行的数组，一个储存键，一个储存值。</p>
+<ul>
+<li>保证数组中键的有序，然后使用数组的索引高效地实现get和其他操作；</li>
+<li>核心是rank方法，对于get方法，只要键在表中，rank方法就能精确告诉它的位置；</li>
+<li>对于put方法，只要键在表中，rank方法能够精确告诉我们去哪里更新它的值，以及当键不存在时将存储到何处。将更大的键向后移动一格，让键值对分别插入到合适的位置。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(st *BinarySearchST)</span></span> Size() <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> st.size</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(st *BinarySearchST)</span></span> IsEmpty() <span class="type">bool</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> st.size == <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(st *BinarySearchST)</span></span> Rank(key <span class="type">int</span>) <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> st.size == <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">	&#125;</span><br><span class="line">	lo, hi := <span class="number">0</span>, st.size<span class="number">-1</span></span><br><span class="line">	<span class="keyword">for</span> lo &lt;= hi&#123;</span><br><span class="line">		mid := lo + (hi-lo)/<span class="number">2</span></span><br><span class="line">		<span class="keyword">if</span> st.keys[mid] == key &#123;</span><br><span class="line">			<span class="keyword">return</span> mid</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> key &lt; st.keys[mid] &#123;</span><br><span class="line">			hi = mid<span class="number">-1</span></span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			lo = mid+<span class="number">1</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> lo</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(st *BinarySearchST)</span></span> rankRecursion(key <span class="type">int</span>, lo, hi <span class="type">int</span>) <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> hi &lt; lo &#123;</span><br><span class="line">		<span class="keyword">return</span> lo</span><br><span class="line">	&#125;</span><br><span class="line">	mid := lo + (hi - lo) / <span class="number">2</span></span><br><span class="line">	<span class="keyword">if</span> key == st.keys[mid] &#123;</span><br><span class="line">		<span class="keyword">return</span> mid</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> key &lt; st.keys[mid] &#123;</span><br><span class="line">		<span class="keyword">return</span> st.rankRecursion(key, lo, mid<span class="number">-1</span>)</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> st.rankRecursion(key, mid+<span class="number">1</span>, hi)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(st *BinarySearchST)</span></span> Get(key <span class="type">int</span>) <span class="keyword">interface</span>&#123;&#125; &#123;</span><br><span class="line">	<span class="keyword">if</span> st.IsEmpty() &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">	&#125;</span><br><span class="line">	i := st.Rank(key)</span><br><span class="line">	<span class="keyword">if</span> i &lt; st.size &amp;&amp; st.keys[i] == key &#123;</span><br><span class="line">		<span class="keyword">return</span> st.vals[i]</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(st *BinarySearchST)</span></span> Put(key <span class="type">int</span>, val <span class="keyword">interface</span>&#123;&#125;) &#123;</span><br><span class="line">	rank := st.Rank(key)</span><br><span class="line">	<span class="keyword">if</span> st.keys[rank] == key &#123;</span><br><span class="line">		st.vals[rank] = val</span><br><span class="line">	&#125;</span><br><span class="line">	st.keys = <span class="built_in">append</span>(st.keys, <span class="number">0</span>)</span><br><span class="line">	st.vals = <span class="built_in">append</span>(st.vals, <span class="literal">nil</span>)</span><br><span class="line">	st.size++</span><br><span class="line">	<span class="keyword">for</span> i := st.size<span class="number">-1</span>; i &gt; rank; i++ &#123;</span><br><span class="line">		st.keys[i] = st.keys[i<span class="number">-1</span>]</span><br><span class="line">		st.vals[i] = st.vals[i<span class="number">-1</span>]</span><br><span class="line">	&#125;</span><br><span class="line">	st.keys[rank] = key</span><br><span class="line">	st.vals[rank] = val</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(st *BinarySearchST)</span></span> Min() <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> st.keys[<span class="number">0</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(st *BinarySearchST)</span></span> Max() <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> st.keys[st.size<span class="number">-1</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(st *BinarySearchST)</span></span> Select(k <span class="type">int</span>) <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> st.keys[k]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(st *BinarySearchST)</span></span> Ceiling(key <span class="type">int</span>) <span class="type">int</span> &#123;</span><br><span class="line">	rank := st.Rank(key)</span><br><span class="line">	<span class="keyword">return</span> rank</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(st *BinarySearchST)</span></span> Floor(key <span class="type">int</span>) <span class="type">int</span> &#123;</span><br><span class="line">	rank := st.Rank(key)</span><br><span class="line">	<span class="keyword">if</span> st.keys[rank] == key &#123;</span><br><span class="line">		<span class="keyword">return</span> rank</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> rank<span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(st *BinarySearchST)</span></span> Del(key <span class="type">int</span>) &#123;</span><br><span class="line">	rank := st.Rank(key)</span><br><span class="line">	<span class="keyword">if</span> st.keys[rank] != key &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	pre := st.keys[:rank]</span><br><span class="line">	suf := st.keys[rank+<span class="number">1</span>:]</span><br><span class="line">	st.size--</span><br><span class="line">	st.keys = <span class="built_in">append</span>(pre, suf...)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-1-6-对二分查找的分析"><a href="#3-1-6-对二分查找的分析" class="headerlink" title="3.1.6 对二分查找的分析"></a>3.1.6 对二分查找的分析</h4><p>最多需要lgN+1次比较。</p>
+<p>向一个空符号表插入N个元素在最坏情况下需要访问~N^2次数组。</p>
+<h4 id="3-1-7-预览"><a href="#3-1-7-预览" class="headerlink" title="3.1.7 预览"></a>3.1.7 预览</h4><p><img src="https://zhenruyi.github.io/images/algo-learn03Algorithms03Search3.png"></p>
+<p><img src="https://zhenruyi.github.io/images/algo-learn03Algorithms03Search4.png"></p>
+<hr>
+<h3 id="3-2-二叉查找树"><a href="#3-2-二叉查找树" class="headerlink" title="3.2 二叉查找树"></a>3.2 二叉查找树</h3><p>一棵二叉查找树BST是一棵二叉树，其中每个结点的键都大于左子树的任意结点的键，而小于右子树任意结点的键。</p>
+<h4 id="3-2-1-基本实现"><a href="#3-2-1-基本实现" class="headerlink" title="3.2.1 基本实现"></a>3.2.1 基本实现</h4><p>递归很重要。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> TreeNode <span class="keyword">struct</span> &#123;</span><br><span class="line">	key <span class="type">int</span></span><br><span class="line">	val <span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">	left, right *TreeNode</span><br><span class="line">	size <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewTreeNode</span><span class="params">(k <span class="type">int</span>, v <span class="keyword">interface</span>&#123;&#125;)</span></span> *TreeNode &#123;</span><br><span class="line">	<span class="keyword">return</span> &amp;TreeNode&#123;</span><br><span class="line">		key: k,</span><br><span class="line">		val: v,</span><br><span class="line">		size: <span class="number">1</span>,</span><br><span class="line">		left: <span class="literal">nil</span>,</span><br><span class="line">		right: <span class="literal">nil</span>,</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *TreeNode)</span></span> Size() <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> t.size</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> BinarySearchTree <span class="keyword">struct</span> &#123;</span><br><span class="line">	root *TreeNode</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t BinarySearchTree)</span></span> Size() <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> t.root.size</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *BinarySearchTree)</span></span> Get(key <span class="type">int</span>) <span class="keyword">interface</span>&#123;&#125; &#123;</span><br><span class="line">	<span class="keyword">return</span> t.get(t.root, key)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *BinarySearchTree)</span></span> get(root *TreeNode, key <span class="type">int</span>) <span class="keyword">interface</span>&#123;&#125; &#123;</span><br><span class="line">	<span class="keyword">if</span> root == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> key == root.key &#123;</span><br><span class="line">		<span class="keyword">return</span> root.val</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> key &lt; root.key &#123;</span><br><span class="line">		<span class="keyword">return</span> t.get(root.left, key)</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> t.get(root.right, key)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *BinarySearchTree)</span></span> Put(key <span class="type">int</span>, val <span class="keyword">interface</span>&#123;&#125;) &#123;</span><br><span class="line">	t.root = t.put(t.root, key, val)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *BinarySearchTree)</span></span> put(root *TreeNode, key <span class="type">int</span>, val <span class="keyword">interface</span>&#123;&#125;) *TreeNode &#123;</span><br><span class="line">	<span class="keyword">if</span> root == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> NewTreeNode(key, val)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> key == root.key &#123;</span><br><span class="line">		root.val = val</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> key &lt; root.key &#123;</span><br><span class="line">		root.left = t.put(root.left, key, val)</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		root.right = t.put(root.right, key, val)</span><br><span class="line">	&#125;</span><br><span class="line">	root.size = root.left.size + root.right.size + <span class="number">1</span></span><br><span class="line">	<span class="keyword">return</span> root</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-2-2-分析"><a href="#3-2-2-分析" class="headerlink" title="3.2.2 分析"></a>3.2.2 分析</h4><p>插入操作和查找操作平均比较次数为~2lnN。</p>
+<h4 id="3-2-3-有序性相关的方法与删除操作"><a href="#3-2-3-有序性相关的方法与删除操作" class="headerlink" title="3.2.3 有序性相关的方法与删除操作"></a>3.2.3 有序性相关的方法与删除操作</h4><p>二叉树得到广泛应用的重要原因是它能够保持键的有序性：</p>
+<ul>
+<li>最大键和最小键。最大键：查找右子树。</li>
+<li>向上取整和向下取整。向下取整：key小于根结点，在左子树中。大于根结点，小于根结点的右子树，根结点本身。大于根结点的右子树，在右子树中。</li>
+<li>选择操作。找到排名为k的键，如果左子树的结点数t大于k，在左子树中；t等于k，就是根结点；t小于k，在右子树查找排名为k-t-1的键。</li>
+<li>排名。是选择操作的逆操作。</li>
+<li>删除最大键和删除最小键。</li>
+<li>删除操作。</li>
+<li>范围查找。</li>
+</ul>
+<p>性能分析</p>
+<p><img src="https://zhenruyi.github.io/images/algo-learn03Algorithms03Search5.png"></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *BinarySearchTree)</span></span> Min() <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> t.min(t.root)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *BinarySearchTree)</span></span> min(root *TreeNode) <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> root.left == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> root.key</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> t.min(root.left)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *BinarySearchTree)</span></span> Max() <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> t.max(t.root)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *BinarySearchTree)</span></span> max(root *TreeNode) <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> root.right == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> root.key</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> t.max(root.right)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *BinarySearchTree)</span></span> Floor(key <span class="type">int</span>) <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> t.floor(t.root, key)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *BinarySearchTree)</span></span> floor(root *TreeNode, key <span class="type">int</span>) <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> root == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> key == root.key &#123;</span><br><span class="line">		<span class="keyword">return</span> root.key</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> key &lt; root.key &#123;</span><br><span class="line">		<span class="keyword">return</span> t.floor(root.left, key)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> root.right == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> root.key</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> rightKey := root.right.key; rightKey &gt; key &#123;</span><br><span class="line">		<span class="keyword">return</span> root.key</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> t.floor(root.right, key)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *BinarySearchTree)</span></span> Ceiling(key <span class="type">int</span>) <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> t.ceiling(t.root, key)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *BinarySearchTree)</span></span> ceiling(root *TreeNode, key <span class="type">int</span>) <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> root == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> key == root.key &#123;</span><br><span class="line">		 <span class="keyword">return</span> key</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> key &gt; root.key &#123;</span><br><span class="line">		<span class="keyword">return</span> t.floor(root.right, key)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> root.left == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> root.key</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> leftKey := root.left.key; leftKey &lt; key &#123;</span><br><span class="line">		<span class="keyword">return</span> root.key</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> t.floor(root.left, key)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *BinarySearchTree)</span></span> Sel(rank <span class="type">int</span>) <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> t.sel(t.root, rank)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *BinarySearchTree)</span></span> sel(root *TreeNode, rank <span class="type">int</span>) <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> root == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">	&#125;</span><br><span class="line">	l := root.left.size</span><br><span class="line">	<span class="keyword">if</span> l == rank &#123;</span><br><span class="line">		<span class="keyword">return</span> root.key</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> l &gt; rank &#123;</span><br><span class="line">		<span class="keyword">return</span> t.sel(root.left, rank)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> t.sel(root.right, rank-l<span class="number">-1</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *BinarySearchTree)</span></span> DelMax() &#123;</span><br><span class="line">	t.root = t.delMax(t.root)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *BinarySearchTree)</span></span> delMax(root *TreeNode) *TreeNode &#123;</span><br><span class="line">	<span class="keyword">if</span> root.right == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> root.left</span><br><span class="line">	&#125;</span><br><span class="line">	root.right = t.delMax(root.right)</span><br><span class="line">	root.size = root.left.size + root.right.size + <span class="number">1</span></span><br><span class="line">	<span class="keyword">return</span> root</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *BinarySearchTree)</span></span> Del(key <span class="type">int</span>) &#123;</span><br><span class="line">	t.root = t.del(t.root, key)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *BinarySearchTree)</span></span> del(root *TreeNode, key <span class="type">int</span>) *TreeNode &#123;</span><br><span class="line">	<span class="keyword">if</span> root == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> key &lt; root.key &#123;</span><br><span class="line">		root.left = t.del(root.left, key)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> key &gt; root.key &#123;</span><br><span class="line">		root.right = t.del(root.right, key)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> root.right == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> root.left</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> root.left == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> root.right</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 删除现在的结点</span></span><br><span class="line">	<span class="comment">// 右子结点的结点作为现在的结点</span></span><br><span class="line">	<span class="comment">// 处理size</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="3-3-平衡查找树"><a href="#3-3-平衡查找树" class="headerlink" title="3.3 平衡查找树"></a>3.3 平衡查找树</h3><p>顺序查找、二分查找和二叉树查找在最坏的情况下性能还是很糟糕。</p>
+<p>平衡查找树，又叫红黑树。无论怎么构造它，运行时间都是对数级别的。</p>
+<h4 id="3-3-1-2-3查找树"><a href="#3-3-1-2-3查找树" class="headerlink" title="3.3.1 _2-3查找树"></a>3.3.1 _2-3查找树</h4><p><img src="https://zhenruyi.github.io/images/algo-learn03Algorithms03Search6.png"></p>
+<div class="pdf-container" data-target="https://zhenruyi.github.io/files/TwoTreeSearchTree.pdf" data-height="650px"></div>
+
+<h5 id="3-3-1-1-查找"><a href="#3-3-1-1-查找" class="headerlink" title="3.3.1.1 查找"></a>3.3.1.1 查找</h5><p>找到键相同的则查找命中，否则查找未命中。</p>
+<h5 id="3-3-1-2-向2-结点插入新键"><a href="#3-3-1-2-向2-结点插入新键" class="headerlink" title="3.3.1.2 向2-结点插入新键"></a>3.3.1.2 向2-结点插入新键</h5><p>插入新结点之后，也要保持树是完美平衡的。</p>
+<p>如果未命中的查找结束于一个2-结点，那就好办了，将2-结点转换成3-结点即可。</p>
+<h5 id="3-3-1-3-向一棵只含有一个3-结点的树插入新键"><a href="#3-3-1-3-向一棵只含有一个3-结点的树插入新键" class="headerlink" title="3.3.1.3 向一棵只含有一个3-结点的树插入新键"></a>3.3.1.3 向一棵只含有一个3-结点的树插入新键</h5><p>考虑一般情况之前，先假设这棵树只有一个结点，而且是一个3-结点。</p>
+<p>首先临时将新键插入到3-结点中，成为一个4-结点。</p>
+<p>然后将中间的键变成左边和右边两个键的父结点。</p>
+<p>变成了一棵含有三个2-结点的树。</p>
+<p>高度从0变成1。</p>
+<h5 id="3-3-1-4-向一个父结点为2-结点的3-结点插入新键"><a href="#3-3-1-4-向一个父结点为2-结点的3-结点插入新键" class="headerlink" title="3.3.1.4 向一个父结点为2-结点的3-结点插入新键"></a>3.3.1.4 向一个父结点为2-结点的3-结点插入新键</h5><p>第二轮热身。插入到3-结点变成一个4-结点，然后分解。</p>
+<p>并不会为中键创建一个新的结点，而是移动到原来的父结点中。</p>
+<h5 id="3-3-1-5-向一个父结点为3-结点的3-结点插入新键"><a href="#3-3-1-5-向一个父结点为3-结点的3-结点插入新键" class="headerlink" title="3.3.1.5 向一个父结点为3-结点的3-结点插入新键"></a>3.3.1.5 向一个父结点为3-结点的3-结点插入新键</h5><p>构建4-结点，然后将中键上浮。</p>
+<p>一直向上不断分解，直到遇到一个2-结点，或者到达根结点。</p>
+<h5 id="3-3-1-6-分解根结点"><a href="#3-3-1-6-分解根结点" class="headerlink" title="3.3.1.6 分解根结点"></a>3.3.1.6 分解根结点</h5><p>根结点为4-结点时，分解这个结点，中键变成新的根结点。</p>
+<h5 id="3-3-1-7-局部变换"><a href="#3-3-1-7-局部变换" class="headerlink" title="3.3.1.7 局部变换"></a>3.3.1.7 局部变换</h5><p>不光在树的底部，在树的任意位置都能进行上述操作。</p>
+<h5 id="3-3-1-8-全局性质"><a href="#3-3-1-8-全局性质" class="headerlink" title="3.3.1.8 全局性质"></a>3.3.1.8 全局性质</h5><p>局部变换不会影响树的全局有序性和平衡性。</p>
+<p>查找和插入操作访问的结点必然不超过lgN个。</p>
+<h4 id="3-3-2-红黑二叉查找树"><a href="#3-3-2-红黑二叉查找树" class="headerlink" title="3.3.2 红黑二叉查找树"></a>3.3.2 红黑二叉查找树</h4><div class="pdf-container" data-target="https://zhenruyi.github.io/files/RedBlackSearchTree.pdf" data-height="650px"></div>
+
+<p>使用红黑二叉查找树来表达并实现2-3查找树。操作如下：</p>
+<ul>
+<li>替换3-结点。红黑二叉树背后的基本思想是用标准的二叉查找树和额外信息来表示。链接分为两种类型：红链接将两个2-结点连接起来构成一个3-结点，黑链接是普通链接。</li>
+<li>一种等价的定义。红链接均为左链接；没有任何一个结点同时和两条红链接相连；完美黑色平衡，即任意空连接到根结点上的黑链接数量相同。</li>
+<li>一一对应。将红链接画平，得到的图像和2-3查找树相同。</li>
+<li>颜色表示。颜色用一个布尔值保存。</li>
+<li>旋转。某些操作导致出现红色右链接或者两条连续的红链接，使用旋转操作改变红链接的指向。<ul>
+<li>左旋转：一条红色的右链接转换成左链接。将两个键中较小者作为根结点变成将较大者作为根结点。</li>
+<li>右旋转：</li>
+</ul>
+</li>
+<li>旋转后重置父结点的链接。使用左旋转或右旋转的返回值重置父结点。</li>
+<li>向2-结点插入新键。新键小于老键，新增一个红色的结点；新键大于老键，新增的红色结点会产生一条红色的右链接，需要左旋转。</li>
+<li>向树底部的2-结点插入新键。</li>
+<li>向一棵双键树插入新键。有三种情况，每种情况都会产生一个同时连接到两个红链接的结点。<ul>
+<li>新键大于原树中的两个键。直接将两个链接变为黑即可。其他两种情况最终也会变成这样。</li>
+<li>新键小于原树中的两个键。产生两个连续的红链接，此时要将上层的红链接右旋转得到第一种情况。</li>
+<li>新键处于两键之间。产生两条连续的红链接。将下层的红链接左旋转得到第二种情况。</li>
+</ul>
+</li>
+<li>红黑转换。局部变换，不会影响整棵树的黑色平衡性。</li>
+<li>根结点总是黑色的。</li>
+</ul>
+<h4 id="3-3-3-实现"><a href="#3-3-3-实现" class="headerlink" title="3.3.3 实现"></a>3.3.3 实现</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> (</span><br><span class="line">	RED = <span class="literal">true</span></span><br><span class="line">	BLACK = <span class="literal">false</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> RBNode <span class="keyword">struct</span> &#123;</span><br><span class="line">	key <span class="type">int</span></span><br><span class="line">	val <span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">	left, right *RBNode</span><br><span class="line">	size <span class="type">int</span></span><br><span class="line">	color <span class="type">bool</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewRBNode</span><span class="params">(k <span class="type">int</span>, v <span class="keyword">interface</span>&#123;&#125;)</span></span> *RBNode &#123;</span><br><span class="line">	<span class="keyword">return</span> &amp;RBNode&#123;</span><br><span class="line">		key: k,</span><br><span class="line">		val: k,</span><br><span class="line">		size: <span class="number">1</span>,</span><br><span class="line">		color: RED,</span><br><span class="line">		left: <span class="literal">nil</span>,</span><br><span class="line">		right: <span class="literal">nil</span>,</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> RedBlackT <span class="keyword">struct</span> &#123;</span><br><span class="line">	root *RBNode</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *RedBlackT)</span></span> isRed(h *RBNode) <span class="type">bool</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> h.color</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *RedBlackT)</span></span> rotateLeft(h *RBNode) *RBNode &#123;</span><br><span class="line">	x := h.right</span><br><span class="line">	h.right = x.left</span><br><span class="line">	x.left = h</span><br><span class="line">	x.color = h.color</span><br><span class="line">	h.color = RED</span><br><span class="line">	x.size = h.size</span><br><span class="line">	h.size = h.left.size + h.right.size + <span class="number">1</span></span><br><span class="line">	<span class="keyword">return</span> x</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *RedBlackT)</span></span> rotateRight(h *RBNode) *RBNode &#123;</span><br><span class="line">	x := h.left</span><br><span class="line">	h.left = x.right</span><br><span class="line">	x.right = h</span><br><span class="line">	x.color = h.color</span><br><span class="line">	h.color = RED</span><br><span class="line">	x.size = h.size</span><br><span class="line">	h.size = h.left.size + h.right.size + <span class="number">1</span></span><br><span class="line">	<span class="keyword">return</span> x</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *RedBlackT)</span></span> flipColors(h *RBNode) &#123;</span><br><span class="line">	h.color = RED</span><br><span class="line">	h.left.color = BLACK</span><br><span class="line">	h.right.color = BLACK</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *RedBlackT)</span></span> Put(key <span class="type">int</span>, val <span class="keyword">interface</span>&#123;&#125;) &#123;</span><br><span class="line">	t.root = t.put(t.root, key, val)</span><br><span class="line">	t.root.color = BLACK</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *RedBlackT)</span></span> put(h *RBNode, key <span class="type">int</span>, val <span class="keyword">interface</span>&#123;&#125;) *RBNode &#123;</span><br><span class="line">	<span class="keyword">if</span> h == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> NewRBNode(key, val)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> key == h.key &#123;</span><br><span class="line">		h.val = val</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> key &lt; h.key &#123;</span><br><span class="line">		h.left = t.put(h.left, key, val)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> key &gt; h.key &#123;</span><br><span class="line">		h.right = t.put(h.right, key, val)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> h.right.color &amp;&amp; !h.left.color &#123;</span><br><span class="line">		h = t.rotateLeft(h)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> h.left.color &amp;&amp; h.left.left.color &#123;</span><br><span class="line">		h = t.rotateRight(h)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> h.left.color &amp;&amp; h.right.color &#123;</span><br><span class="line">		t.flipColors(h)</span><br><span class="line">	&#125;</span><br><span class="line">	h.size = h.left.size + h.right.size + <span class="number">1</span></span><br><span class="line">	<span class="keyword">return</span> h</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-3-4-删除操作"><a href="#3-3-4-删除操作" class="headerlink" title="3.3.4 删除操作"></a>3.3.4 删除操作</h4><div class="pdf-container" data-target="https://zhenruyi.github.io/files/RedBlackSearchTreeDel.pdf" data-height="650px"></div>
+
+
+
+<h4 id="3-3-5-红黑树的性质"><a href="#3-3-5-红黑树的性质" class="headerlink" title="3.3.5 红黑树的性质"></a>3.3.5 红黑树的性质</h4><p>高度不会超过2lgN。根结点到任意结点的平均路径长度为~lgN。</p>
+<p><img src="https://zhenruyi.github.io/images/algo-learn03Algorithms03Search7.png"></p>
+<hr>
+<h3 id="3-4-散列表"><a href="#3-4-散列表" class="headerlink" title="3.4 散列表"></a>3.4 散列表</h3><p>如果键都是小整数，可以使用数组实现无序的符号表。但是当出现更复杂的键时，就需要用算术操作将键转化为数组的索引来访问数组中的键值对。这就是散列表。散列的查找算法分为两步：</p>
+<ul>
+<li>用散列函数将被查找的键转化为数组的一个索引。</li>
+<li>出现相同的键，处理碰撞冲突。两种解决方法：拉链法和线性探测法。</li>
+</ul>
+<p>散列表是算法在空间和时间上做出权衡的经典例子：</p>
+<ul>
+<li>如果没有空间限制，可以直接将键作为数组的索引，这个索引可能是超大的，这样查找操作只需要访问内存一次。</li>
+<li>如果没有时间限制，使用无序数组顺序查找。</li>
+</ul>
+<h4 id="3-4-1-散列函数"><a href="#3-4-1-散列函数" class="headerlink" title="3.4.1 散列函数"></a>3.4.1 散列函数</h4><p>散列函数，目的是将键转化为数组的索引。有一个M大小的数组，就需要一个散列函数将任意键转化成M范围内的数，使0~M-1之间的每个整数都有相等的可能性。无论键是何种类型，都能转化为一个数。当键为：</p>
+<ul>
+<li>正整数。最常用的是除留余数法。除数不一定要是10的倍数，这样的话只能利用被除数的后几位。k%97要比k%100好。</li>
+<li>浮点数。如果是0-1之间的，将它乘以M并四舍五入。有缺陷，这种情况下高位起的作用更大，修正的办法是将键表示为二进制然后再使用除留余数法。</li>
+<li>字符串。将字符串作为一个大整数即可，然后使用除留余数法。</li>
+<li>组合键。组合起来，例如一个日期，hash = (((day * R +month) % M) * R +year) % M。只需要保证R足够小不溢出。</li>
+</ul>
+<h4 id="3-4-2-基于拉链法的散列表"><a href="#3-4-2-基于拉链法的散列表" class="headerlink" title="3.4.2 基于拉链法的散列表"></a>3.4.2 基于拉链法的散列表</h4><p>基于拉链法的散列表的性质：</p>
+<ul>
+<li>在M条链表和N个键的散列表中，任意一条链表中键的数量均在N/M的常数因子范围内的概率无限趋向于1。</li>
+<li>在M条链表和N个键的散列表中，未命中查找和插入操作所需的比较次数为~N/M。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> ChainingHT <span class="keyword">struct</span> &#123;</span><br><span class="line">	<span class="comment">// 链表的平均长度N/M</span></span><br><span class="line">	<span class="comment">// 键值对总数</span></span><br><span class="line">	N <span class="type">int</span></span><br><span class="line">	<span class="comment">// 数组的大小</span></span><br><span class="line">	M <span class="type">int</span></span><br><span class="line">	<span class="comment">// 数组</span></span><br><span class="line">	st []SequentialSearchST</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewChainingHT</span><span class="params">(m <span class="type">int</span>)</span></span> *ChainingHT &#123;</span><br><span class="line">	ret := &amp;ChainingHT&#123;</span><br><span class="line">		M: m,</span><br><span class="line">		st: <span class="built_in">make</span>([]SequentialSearchST, m),</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(ht *ChainingHT)</span></span> hashfunc(key <span class="type">int</span>) <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> key % ht.M</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(ht *ChainingHT)</span></span> Get(key <span class="type">int</span>) <span class="keyword">interface</span>&#123;&#125; &#123;</span><br><span class="line">	<span class="keyword">return</span> ht.st[ht.hashfunc(key)].Get(key)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(ht *ChainingHT)</span></span> Put(key <span class="type">int</span>, val <span class="keyword">interface</span>&#123;&#125;) &#123;</span><br><span class="line">	ht.st[ht.hashfunc(key)].Put(key, val)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-4-3-基于线性探测法的散列表"><a href="#3-4-3-基于线性探测法的散列表" class="headerlink" title="3.4.3 基于线性探测法的散列表"></a>3.4.3 基于线性探测法的散列表</h4><p>散列表的另一种实现是开放地址散列表，依靠数组中的空位解决碰撞，用大小为M的数组保存N个键值对，M&gt;N。开放地址散列表中最简单的方法是线性探测法，当发生碰撞时，直接检查散列表的下一个位置，会出现三种情况：</p>
+<ul>
+<li>命中，键相同。</li>
+<li>未命中，键为空。</li>
+<li>继续查找，键不同。</li>
+</ul>
+<p>核心思想是，与其把空间用作链表，不如将它们作为在散列表中的空元素。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> LinearHT <span class="keyword">struct</span> &#123;</span><br><span class="line">	N <span class="type">int</span>   <span class="comment">//键数量</span></span><br><span class="line">	M <span class="type">int</span>   <span class="comment">//数组大小</span></span><br><span class="line">	keys []<span class="type">int</span></span><br><span class="line">	vals []<span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewLinearHT</span><span class="params">(m <span class="type">int</span>)</span></span> *LinearHT &#123;</span><br><span class="line">	ret := &amp;LinearHT&#123;</span><br><span class="line">		N: <span class="number">0</span>,</span><br><span class="line">		M: m,</span><br><span class="line">		keys: <span class="built_in">make</span>([]<span class="type">int</span>, m),</span><br><span class="line">		vals: <span class="built_in">make</span>([]<span class="keyword">interface</span>&#123;&#125;, m),</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; m; i++ &#123;</span><br><span class="line">		ret.keys[i] = <span class="number">-1</span></span><br><span class="line">		ret.vals[i] = <span class="number">-1</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(ht *LinearHT)</span></span> hashFunc(key <span class="type">int</span>) <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> key % ht.M</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(ht *LinearHT)</span></span> Put(key <span class="type">int</span>, val <span class="keyword">interface</span>&#123;&#125;) &#123;</span><br><span class="line">	<span class="keyword">if</span> ht.N &gt;= ht.M / <span class="number">2</span> &#123;</span><br><span class="line">		ht.resize(<span class="number">2</span> * ht.M)</span><br><span class="line">	&#125;</span><br><span class="line">	index := ht.hashFunc(key)</span><br><span class="line">	<span class="keyword">for</span> ht.keys[index] != <span class="number">-1</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> ht.keys[index] == key &#123;</span><br><span class="line">			ht.vals[index] = val</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">		index = (index + <span class="number">1</span>) % ht.M</span><br><span class="line">	&#125;</span><br><span class="line">	ht.keys[index] = key</span><br><span class="line">	ht.vals[index] = val</span><br><span class="line">	ht.N++</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(ht *LinearHT)</span></span> Get(key <span class="type">int</span>) <span class="keyword">interface</span>&#123;&#125; &#123;</span><br><span class="line">	<span class="keyword">for</span> i := ht.hashFunc(key); ht.keys[i] != <span class="number">-1</span>; i = (i+<span class="number">1</span>) % ht.M &#123;</span><br><span class="line">		<span class="keyword">if</span> ht.keys[i] == key &#123;</span><br><span class="line">			<span class="keyword">return</span> ht.vals[i]</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除操作</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(ht *LinearHT)</span></span> Del(key <span class="type">int</span>) &#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-4-4-调整数组大小"><a href="#3-4-4-调整数组大小" class="headerlink" title="3.4.4 调整数组大小"></a>3.4.4 调整数组大小</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(ht *LinearHT)</span></span> resize(r <span class="type">int</span>) &#123;</span><br><span class="line">	t := NewLinearHT(r)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; ht.M; i++ &#123;</span><br><span class="line">		<span class="keyword">if</span> ht.keys[i] != <span class="number">-1</span> &#123;</span><br><span class="line">			t.Put(ht.keys[i], ht.vals[i])</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	ht.keys = t.keys</span><br><span class="line">	ht.vals = t.vals</span><br><span class="line">	ht.M = t.M</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-4-5-内存使用"><a href="#3-4-5-内存使用" class="headerlink" title="3.4.5 内存使用"></a>3.4.5 内存使用</h4><p><img src="https://zhenruyi.github.io/images/algo-learn03Algorithms03Search8.png"></p>
+<hr>
+<h3 id="3-5-应用"><a href="#3-5-应用" class="headerlink" title="3.5 应用"></a>3.5 应用</h3><p><img src="https://zhenruyi.github.io/images/algo-learn03Algorithms03Search9.png"></p>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/learn/" rel="tag"># learn</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/algo/algorithms2/" rel="prev" title="《算法》笔记：第2章  排序">
+                  <i class="fa fa-chevron-left"></i> 《算法》笔记：第2章  排序
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/algo/algorithms4/" rel="next" title="《算法》笔记：第4章  图">
+                  《算法》笔记：第4章  图 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">luyizheng</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdn.jsdelivr.net/npm/pdfobject@2.2.7/pdfobject.min.js","integrity":"sha256-ph3Dk89VmuTVXG6x/RDzk53SU9LPdAh1tpv0UvnDZ2I="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon3/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon3/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon3/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon3/android-chrome-384x384.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhenruyi.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":20,"offset":45},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":null,"post_header":null,"post_body":null,"coll_header":null,"sidebar":"fadeInDown"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="leetcod的一个算法练习计划，一天一道算法题，一共30道题。 跟着Feis Studio的Feis Lee老师学的。视频链接：【C 語言的 LeetCode 30 天挑戰】 实现语言：C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode30天算法挑战">
+<meta property="og:url" content="https://zhenruyi.github.io/algo/leetcode1/index.html">
+<meta property="og:site_name" content="zhenruyi">
+<meta property="og:description" content="leetcod的一个算法练习计划，一天一道算法题，一共30道题。 跟着Feis Studio的Feis Lee老师学的。视频链接：【C 語言的 LeetCode 30 天挑戰】 实现语言：C">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zhenruyi.github.io/images/algo02Leetcode30daysApril122_1.png">
+<meta property="og:image" content="https://zhenruyi.github.io/images/algo02Leetcode30daysApril122_2.png">
+<meta property="article:published_time" content="2021-03-28T14:30:00.000Z">
+<meta property="article:modified_time" content="2022-04-16T23:00:24.691Z">
+<meta property="article:author" content="luyizheng">
+<meta property="article:tag" content="exec">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhenruyi.github.io/images/algo02Leetcode30daysApril122_1.png">
+
+
+<link rel="canonical" href="https://zhenruyi.github.io/algo/leetcode1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://zhenruyi.github.io/algo/leetcode1/","path":"algo/leetcode1/","title":"Leetcode30天算法挑战"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Leetcode30天算法挑战 | zhenruyi</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zhenruyi</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">done is better than perfect</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">7</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">34</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#April"><span class="nav-text">April</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#53-Maximum-Subarray"><span class="nav-text">53. Maximum Subarray</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#136-Single-Number"><span class="nav-text">136. Single Number</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#202-Happy-Number"><span class="nav-text">202. Happy Number</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#283-Move-Zeroes"><span class="nav-text">283. Move Zeroes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#122-Best-Time-to-Buy-and-Sell-Stock-II"><span class="nav-text">122. Best Time to Buy and Sell Stock II</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#49-Group-Anagrams"><span class="nav-text">49. Group Anagrams</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#876-Middle-of-the-Linked-List"><span class="nav-text">876. Middle of the Linked List</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#844-Backspace-String-Compare"><span class="nav-text">844. Backspace String Compare</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#155-Min-Stack"><span class="nav-text">155. Min Stack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#543-Diameter-of-Binary-Tree"><span class="nav-text">543. Diameter of Binary Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1046-Last-Stone-Weight"><span class="nav-text">1046. Last Stone Weight</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#525-Contiguous-Array"><span class="nav-text">525. Contiguous Array</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#238-Product-of-Array-Except-Self"><span class="nav-text">238. Product of Array Except Self</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20-Valid-Parentheses"><span class="nav-text">20. Valid Parentheses</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="luyizheng"
+      src="/images/avatar2.jpg">
+  <p class="site-author-name" itemprop="name">luyizheng</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhenruyi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhenruyi" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/jugenlu" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;jugenlu" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://m.weibo.cn/u/3017941811" title="Weibo → https:&#x2F;&#x2F;m.weibo.cn&#x2F;u&#x2F;3017941811" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:cs19b022@163.com" title="E-Mail → mailto:cs19b022@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/24837978" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;24837978" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>Bilibili</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://zhenruyi.github.io/images/OfficialAccountCode.jpg" title="WechatOfficial → https:&#x2F;&#x2F;zhenruyi.github.io&#x2F;images&#x2F;OfficialAccountCode.jpg"><i class="fab fa-weixin fa-fw"></i>WechatOfficial</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      they are very lovely
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/672346917/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;672346917&#x2F;" rel="noopener" target="_blank">AVA向晚</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/672353429/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;672353429&#x2F;" rel="noopener" target="_blank">Bella贝拉</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/351609538/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;351609538&#x2F;" rel="noopener" target="_blank">Carol珈乐</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/672328094/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;672328094&#x2F;" rel="noopener" target="_blank">Diana嘉然</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/672342685/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;672342685&#x2F;" rel="noopener" target="_blank">Eileen乃琳</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zhenruyi.github.io/algo/leetcode1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+      <meta itemprop="name" content="luyizheng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhenruyi">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Leetcode30天算法挑战 | zhenruyi">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Leetcode30天算法挑战
+        </h1>
+
+        <div class="post-meta-container">
+
+        
+
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-03-28 22:30:00" itemprop="dateCreated datePublished" datetime="2021-03-28T22:30:00+08:00">2021-03-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-04-17 07:00:24" itemprop="dateModified" datetime="2022-04-17T07:00:24+08:00">2022-04-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/algo/" itemprop="url" rel="index"><span itemprop="name">algo</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>leetcod的一个算法练习计划，一天一道算法题，一共30道题。</p>
+<p>跟着<a target="_blank" rel="noopener" href="https://feis.studio/#/">Feis Studio</a>的Feis Lee老师学的。视频链接：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1764y1M7a6?spm_id_from=..search-card.all.click">【C 語言的 LeetCode 30 天挑戰】</a></p>
+<p>实现语言：C</p>
+<span id="more"></span>
+
+<h2 id="April"><a href="#April" class="headerlink" title="April"></a>April</h2><h3 id="53-Maximum-Subarray"><a href="#53-Maximum-Subarray" class="headerlink" title="53. Maximum Subarray"></a>53. Maximum Subarray</h3><p>Given an integer array <code>nums</code>, find the contiguous subarray (containing at least one number) which has the largest sum and return <em>its sum</em>.</p>
+<p>A <strong>subarray</strong> is a <strong>contiguous</strong> part of an array.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [<span class="string">-2</span>,1,<span class="string">-3</span>,4,<span class="string">-1</span>,2,1,<span class="string">-5</span>,4]</span><br><span class="line">Output: 6</span><br><span class="line">Explanation: [4,<span class="string">-1</span>,2,1] has the largest sum = 6.</span><br></pre></td></tr></table></figure>
+
+<p><strong>Solution:</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">cmp</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (a &gt; b) ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">maxSubArray</span><span class="params">(<span class="type">int</span>* nums, <span class="type">int</span> numsSize)</span>&#123;</span><br><span class="line">    <span class="type">int</span> pre = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> max = nums[<span class="number">0</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; numsSize; i++) &#123;</span><br><span class="line">        pre = cmp(pre + nums[i], nums[i]);</span><br><span class="line">        max = cmp(pre, max);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="136-Single-Number"><a href="#136-Single-Number" class="headerlink" title="136. Single Number"></a>136. Single Number</h3><p>Given a <strong>non-empty</strong> array of integers <code>nums</code>, every element appears <em>twice</em> except for one. Find that single one.</p>
+<p>You must implement a solution with a linear runtime complexity and use only constant extra space.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Input</span>: nums =<span class="meta"> [2,2,1]</span></span><br><span class="line"><span class="attribute">Output</span>: <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Solution:</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 经典异或题目</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">singleNumber</span><span class="params">(<span class="type">int</span>* nums, <span class="type">int</span> numsSize)</span> &#123;   </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; numsSize; i++) &#123;</span><br><span class="line">        </span><br><span class="line">        nums[<span class="number">0</span>] = nums[<span class="number">0</span>] ^ nums[i];</span><br><span class="line">        </span><br><span class="line">    &#125;    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="202-Happy-Number"><a href="#202-Happy-Number" class="headerlink" title="202. Happy Number"></a>202. Happy Number</h3><p>Write an algorithm to determine if a number <code>n</code> is happy.</p>
+<p>A <strong>happy number</strong> is a number defined by the following process:</p>
+<ul>
+<li>  Starting with any positive integer, replace the number by the sum of the squares of its digits.</li>
+<li>  Repeat the process until the number equals 1 (where it will stay), or it <strong>loops endlessly in a cycle</strong> which does not include 1.</li>
+<li>  Those numbers for which this process <strong>ends in 1</strong> are happy.</li>
+</ul>
+<p>Return <code>true</code> <em>if</em> <code>n</code> <em>is a happy number, and</em> <code>false</code> <em>if not</em>.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Input</span>: n = <span class="number">19</span></span><br><span class="line"><span class="attribute">Output</span>: true</span><br><span class="line"><span class="attribute">Explanation</span>:</span><br><span class="line"><span class="attribute">12</span> + <span class="number">92</span> = <span class="number">82</span></span><br><span class="line"><span class="attribute">82</span> + <span class="number">22</span> = <span class="number">68</span></span><br><span class="line"><span class="attribute">62</span> + <span class="number">82</span> = <span class="number">100</span></span><br><span class="line"><span class="attribute">12</span> + <span class="number">02</span> + <span class="number">02</span> = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Solution:</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 龟兔赛跑 slow fast</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">next</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="type">int</span> n1 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(n != <span class="number">0</span>) &#123;</span><br><span class="line">        n1 += (n % <span class="number">10</span>) * (n % <span class="number">10</span>);</span><br><span class="line">        n /= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> n1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">bool</span> <span class="title function_">isHappy</span><span class="params">(<span class="type">int</span> n)</span>&#123;</span><br><span class="line">    <span class="type">int</span> slow = n;</span><br><span class="line">    <span class="type">int</span> fast = next(n);</span><br><span class="line">    <span class="keyword">while</span> (slow != fast &amp;&amp; fast != <span class="number">1</span>) &#123;</span><br><span class="line">        slow = next(slow);</span><br><span class="line">        fast = next(next(fast));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (fast == <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="283-Move-Zeroes"><a href="#283-Move-Zeroes" class="headerlink" title="283. Move Zeroes"></a>283. Move Zeroes</h3><p>Given an integer array <code>nums</code>, move all <code>0</code>‘s to the end of it while maintaining the relative order of the non-zero elements.</p>
+<p><strong>Note</strong> that you must do this in-place without making a copy of the array.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = <span class="string">[0,1,0,3,12]</span></span><br><span class="line">Output: <span class="string">[1,3,12,0,0]</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Solution:</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span> *a, <span class="type">int</span> *b)</span> &#123;</span><br><span class="line">    <span class="type">int</span> t = *a;</span><br><span class="line">    *a = *b, *b = t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">moveZeroes</span><span class="params">(<span class="type">int</span> *nums, <span class="type">int</span> numsSize)</span> &#123;</span><br><span class="line">    <span class="type">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (right &lt; numsSize) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[right]) &#123;</span><br><span class="line">            swap(nums + left, nums + right);</span><br><span class="line">            left++;</span><br><span class="line">        &#125;</span><br><span class="line">        right++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="122-Best-Time-to-Buy-and-Sell-Stock-II"><a href="#122-Best-Time-to-Buy-and-Sell-Stock-II" class="headerlink" title="122. Best Time to Buy and Sell Stock II"></a>122. Best Time to Buy and Sell Stock II</h3><p>You are given an integer array <code>prices</code> where <code>prices[i]</code> is the price of a given stock on the <code>ith</code> day.</p>
+<p>On each day, you may decide to buy and/or sell the stock. You can only hold <strong>at most one</strong> share of the stock at any time. However, you can buy it then immediately sell it on the <strong>same day</strong>.</p>
+<p>Find and return <em>the <strong>maximum</strong> profit you can achieve</em>.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Input</span>: prices =<span class="meta"> [7,1,5,3,6,4]</span></span><br><span class="line"><span class="attribute">Output</span>: <span class="number">7</span></span><br><span class="line"><span class="attribute">Explanation</span>: Buy <span class="literal">on</span> day <span class="number">2</span> (price = <span class="number">1</span>) and sell <span class="literal">on</span> day <span class="number">3</span> (price = <span class="number">5</span>), profit = <span class="number">5</span>-<span class="number">1</span> = <span class="number">4</span>.</span><br><span class="line"><span class="attribute">Then</span> buy <span class="literal">on</span> day <span class="number">4</span> (price = <span class="number">3</span>) and sell <span class="literal">on</span> day <span class="number">5</span> (price = <span class="number">6</span>), profit = <span class="number">6</span>-<span class="number">3</span> = <span class="number">3</span>.</span><br><span class="line"><span class="attribute">Total</span> profit is <span class="number">4</span> + <span class="number">3</span> = <span class="number">7</span>.</span><br></pre></td></tr></table></figure>
+
+<p><strong>Solution 1:</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// The Limit Exceeded</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">maxProfit</span><span class="params">(<span class="type">int</span>* prices, <span class="type">int</span> pricesSize)</span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (pricesSize &lt;= <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> profit;</span><br><span class="line">    <span class="type">int</span> max = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 最后一天不卖</span></span><br><span class="line">    profit = maxProfit(prices, pricesSize - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (profit &gt; max) max = profit;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 最后一天卖</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; pricesSize - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        profit = prices[pricesSize - <span class="number">1</span>] - prices[i] + maxProfit(prices, i);</span><br><span class="line">        <span class="keyword">if</span> (profit &gt; max) max = profit;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Solution 2: Peak Valley Approach</strong></p>
+<p><img src="https://zhenruyi.github.io/images/algo02Leetcode30daysApril122_1.png"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 所有波峰加波谷之和</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">maxProfit</span><span class="params">(<span class="type">int</span>* prices, <span class="type">int</span> pricesSize)</span>&#123;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> valley = prices[<span class="number">0</span>];</span><br><span class="line">    <span class="type">int</span> peak = prices[<span class="number">0</span>];</span><br><span class="line">    <span class="type">int</span> profit = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(i &lt; pricesSize) &#123;</span><br><span class="line">        <span class="keyword">while</span>(i &lt; pricesSize &amp;&amp; prices[i] &lt;= prices[i<span class="number">-1</span>])</span><br><span class="line">            i++;</span><br><span class="line">        valley = prices[i<span class="number">-1</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(i &lt; pricesSize &amp;&amp; prices[i] &gt;= prices[i<span class="number">-1</span>])</span><br><span class="line">            i++;</span><br><span class="line">        peak = prices[i<span class="number">-1</span>];</span><br><span class="line">        profit += peak - valley;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> profit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>改进：</p>
+<p><img src="https://zhenruyi.github.io/images/algo02Leetcode30daysApril122_2.png"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">JAVA:</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxProfit</span><span class="params">(<span class="type">int</span>[] prices)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">maxprofit</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; prices.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (prices[i] &gt; prices[i - <span class="number">1</span>])</span><br><span class="line">                maxprofit += prices[i] - prices[i - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> maxprofit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Solution 2: 乐扣</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 动态规划</span></span><br><span class="line"><span class="comment">// 0:手中没有股票, 1:手中有股票</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">maxProfit</span><span class="params">(<span class="type">int</span>* prices, <span class="type">int</span> pricesSize)</span>&#123;</span><br><span class="line">    <span class="type">int</span> profit[pricesSize][<span class="number">2</span>];</span><br><span class="line">    <span class="comment">// 手中没有股票</span></span><br><span class="line">    profit[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 手中有股票</span></span><br><span class="line">    profit[<span class="number">0</span>][<span class="number">1</span>] = -prices[<span class="number">0</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;pricesSize; i++) &#123;</span><br><span class="line">        profit[i][<span class="number">0</span>] = profit[i<span class="number">-1</span>][<span class="number">0</span>] &gt; (profit[i<span class="number">-1</span>][<span class="number">1</span>]+prices[i]) ? profit[i<span class="number">-1</span>][<span class="number">0</span>] : (profit[i<span class="number">-1</span>][<span class="number">1</span>]+prices[i]);</span><br><span class="line">        profit[i][<span class="number">1</span>] = profit[i<span class="number">-1</span>][<span class="number">1</span>] &gt; (profit[i<span class="number">-1</span>][<span class="number">0</span>]-prices[i]) ? profit[i<span class="number">-1</span>][<span class="number">1</span>] : (profit[i<span class="number">-1</span>][<span class="number">0</span>]-prices[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> profit[pricesSize - <span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 贪心算法</span></span><br><span class="line"><span class="comment">// 在每个区间都是获得利润</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">maxProfit</span><span class="params">(<span class="type">int</span>* prices, <span class="type">int</span> pricesSize)</span>&#123;</span><br><span class="line">    <span class="type">int</span> profit = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; pricesSize; i++) &#123;</span><br><span class="line">        profit += (prices[i] - prices[i<span class="number">-1</span>] &gt; <span class="number">0</span>) ? prices[i] - prices[i<span class="number">-1</span>] : <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> profit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="49-Group-Anagrams"><a href="#49-Group-Anagrams" class="headerlink" title="49. Group Anagrams"></a>49. Group Anagrams</h3><p>Given an array of strings <code>strs</code>, group <strong>the anagrams</strong> together. You can return the answer in <strong>any order</strong>.</p>
+<p>An <strong>Anagram</strong> is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Input</span>: strs = [<span class="string">&quot;eat&quot;</span>,<span class="string">&quot;tea&quot;</span>,<span class="string">&quot;tan&quot;</span>,<span class="string">&quot;ate&quot;</span>,<span class="string">&quot;nat&quot;</span>,<span class="string">&quot;bat&quot;</span>]</span><br><span class="line"><span class="symbol">Output</span>: [[<span class="string">&quot;bat&quot;</span>],[<span class="string">&quot;nat&quot;</span>,<span class="string">&quot;tan&quot;</span>],[<span class="string">&quot;ate&quot;</span>,<span class="string">&quot;eat&quot;</span>,<span class="string">&quot;tea&quot;</span>]]</span><br></pre></td></tr></table></figure>
+
+<p><strong>Solution 1:</strong></p>
+<p>用质数表示26个字母，把字符串的各个字母相乘，这样可保证字母异位词的乘积必定是相等的。其余步骤就是用map存储，和别人的一致了。</p>
+<h3 id="876-Middle-of-the-Linked-List"><a href="#876-Middle-of-the-Linked-List" class="headerlink" title="876. Middle of the Linked List"></a>876. Middle of the Linked List</h3><p>Given the <code>head</code> of a singly linked list, return <em>the middle node of the linked list</em>.</p>
+<p>If there are two middle nodes, return <strong>the second middle</strong> node.</p>
+<p><strong>Solution 1:</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> ListNode* <span class="title function_">middleNode</span><span class="params">(<span class="keyword">struct</span> ListNode* head)</span>&#123;</span><br><span class="line">    <span class="type">int</span> nodeSize = <span class="number">0</span>;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span>* <span class="title">p</span> =</span> head;</span><br><span class="line">    <span class="keyword">while</span>(p != <span class="literal">NULL</span>) &#123;</span><br><span class="line">        nodeSize++;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    nodeSize /= <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;nodeSize; i++) &#123;</span><br><span class="line">        head = head-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Solution 2: 快慢指针，快的比慢的快两倍</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> ListNode* <span class="title function_">middleNode</span><span class="params">(<span class="keyword">struct</span> ListNode* head)</span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> *<span class="title">fast</span>, *<span class="title">slow</span>;</span></span><br><span class="line">    fast = head;</span><br><span class="line">    slow = head;</span><br><span class="line">    <span class="keyword">while</span>(fast-&gt;next != <span class="literal">NULL</span> &amp;&amp; fast != <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span>(fast-&gt;next-&gt;next == <span class="literal">NULL</span>)</span><br><span class="line">            <span class="keyword">return</span> slow-&gt;next;</span><br><span class="line">        fast = fast-&gt;next-&gt;next;</span><br><span class="line">        slow = slow-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> slow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="844-Backspace-String-Compare"><a href="#844-Backspace-String-Compare" class="headerlink" title="844. Backspace String Compare"></a>844. Backspace String Compare</h3><p>Given two strings <code>s</code> and <code>t</code>, return <code>true</code> <em>if they are equal when both are typed into empty text editors</em>. <code>&#39;#&#39;</code> means a backspace character.</p>
+<p>Note that after backspacing an empty text, the text will continue empty.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Input:</span> s = <span class="string">&quot;ab#c&quot;</span>, t = <span class="string">&quot;ad#c&quot;</span></span><br><span class="line"><span class="symbol">Output:</span> <span class="literal">true</span></span><br><span class="line"><span class="symbol">Explanation:</span> Both s <span class="built_in">and</span> t become <span class="string">&quot;ac&quot;</span>.</span><br></pre></td></tr></table></figure>
+
+<p><strong>Solution 1: 重构字符串</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> <span class="title function_">backspaceCompare</span><span class="params">(<span class="type">char</span> * s, <span class="type">char</span> * t)</span>&#123;</span><br><span class="line">    <span class="type">char</span> sNew[<span class="number">201</span>];</span><br><span class="line">    <span class="type">char</span> tNew[<span class="number">201</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(s[i] != <span class="string">&#x27;\0&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span>(s[i] == <span class="string">&#x27;#&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(j &gt; <span class="number">0</span>)</span><br><span class="line">                j--;</span><br><span class="line">            i++;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        sNew[j] = s[i];</span><br><span class="line">        j++;</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    sNew[j] = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">    </span><br><span class="line">    i = <span class="number">0</span>;</span><br><span class="line">    j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(t[i] != <span class="string">&#x27;\0&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span>(t[i] == <span class="string">&#x27;#&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(j &gt; <span class="number">0</span>)</span><br><span class="line">                j--;</span><br><span class="line">            i++;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        tNew[j] = t[i];</span><br><span class="line">        j++;</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    tNew[j] = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">    </span><br><span class="line">    i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(sNew[i] != <span class="string">&#x27;\0&#x27;</span> || tNew[i] != <span class="string">&#x27;\0&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span>(sNew[i] != tNew[i])</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    	i++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Solution 2: 双指针</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> <span class="title function_">backspaceCompare</span><span class="params">(<span class="type">char</span> * s, <span class="type">char</span> * t)</span>&#123;</span><br><span class="line">    <span class="type">int</span> ps = <span class="built_in">strlen</span>(s) - <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> pt = <span class="built_in">strlen</span>(t) - <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> sSkip = <span class="number">0</span>, tSkip = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(ps &gt;= <span class="number">0</span> || pt &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">while</span>(ps &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(s[ps] == <span class="string">&#x27;#&#x27;</span>) &#123;</span><br><span class="line">                ps--;</span><br><span class="line">                sSkip++;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span>(sSkip &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                ps--;</span><br><span class="line">                sSkip--;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(pt &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(t[pt] == <span class="string">&#x27;#&#x27;</span>) &#123;</span><br><span class="line">                pt--;</span><br><span class="line">                tSkip++;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (tSkip &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                pt--;</span><br><span class="line">                tSkip--;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (pt &gt;= <span class="number">0</span> &amp;&amp; ps &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[ps] != t[pt]) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (ps &gt;= <span class="number">0</span> || pt &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ps--, pt--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="155-Min-Stack"><a href="#155-Min-Stack" class="headerlink" title="155. Min Stack"></a>155. Min Stack</h3><p>Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.</p>
+<p>Implement the <code>MinStack</code> class:</p>
+<ul>
+<li>  <code>MinStack()</code> initializes the stack object.</li>
+<li>  <code>void push(int val)</code> pushes the element <code>val</code> onto the stack.</li>
+<li>  <code>void pop()</code> removes the element on the top of the stack.</li>
+<li>  <code>int top()</code> gets the top element of the stack.</li>
+<li><code>int getMin()</code> retrieves the minimum element in the stack.</li>
+</ul>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Input</span><br><span class="line">[<span class="string">&quot;MinStack&quot;</span>,<span class="string">&quot;push&quot;</span>,<span class="string">&quot;push&quot;</span>,<span class="string">&quot;push&quot;</span>,<span class="string">&quot;getMin&quot;</span>,<span class="string">&quot;pop&quot;</span>,<span class="string">&quot;top&quot;</span>,<span class="string">&quot;getMin&quot;</span>]</span><br><span class="line">[[],[<span class="number">-2</span>],[<span class="number">0</span>],[<span class="number">-3</span>],[],[],[],[]]</span><br><span class="line"></span><br><span class="line">Output</span><br><span class="line">[<span class="literal">null</span>,<span class="literal">null</span>,<span class="literal">null</span>,<span class="literal">null</span>,<span class="number">-3</span>,<span class="literal">null</span>,<span class="number">0</span>,<span class="number">-2</span>]</span><br><span class="line"></span><br><span class="line">Explanation</span><br><span class="line">MinStack minStack = <span class="keyword">new</span> MinStack();</span><br><span class="line">minStack.<span class="built_in">push</span>(<span class="number">-2</span>);</span><br><span class="line">minStack.<span class="built_in">push</span>(<span class="number">0</span>);</span><br><span class="line">minStack.<span class="built_in">push</span>(<span class="number">-3</span>);</span><br><span class="line">minStack.getMin(); <span class="comment">// return -3</span></span><br><span class="line">minStack.<span class="built_in">pop</span>();</span><br><span class="line">minStack.<span class="built_in">top</span>();    <span class="comment">// return 0</span></span><br><span class="line">minStack.getMin(); <span class="comment">// return -2</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Solution 1:</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">int</span>* data;</span><br><span class="line">    <span class="type">int</span>* mins;</span><br><span class="line">    <span class="type">int</span> size;</span><br><span class="line">&#125; MinStack;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">MinStack* <span class="title function_">minStackCreate</span><span class="params">()</span> &#123;</span><br><span class="line">    MinStack* s = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(MinStack));</span><br><span class="line">    s-&gt;data = <span class="literal">NULL</span>;</span><br><span class="line">    s-&gt;mins = <span class="literal">NULL</span>;</span><br><span class="line">    s-&gt;size = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">minStackPush</span><span class="params">(MinStack* obj, <span class="type">int</span> val)</span> &#123;</span><br><span class="line">    obj-&gt;size++;</span><br><span class="line">    obj-&gt;data = <span class="built_in">realloc</span>(obj-&gt;data, <span class="keyword">sizeof</span>(<span class="type">int</span>)*(obj-&gt;size));</span><br><span class="line">    obj-&gt;mins = <span class="built_in">realloc</span>(obj-&gt;mins, <span class="keyword">sizeof</span>(<span class="type">int</span>)*(obj-&gt;size));</span><br><span class="line">    obj-&gt;data[obj-&gt;size<span class="number">-1</span>] = val;</span><br><span class="line">    <span class="keyword">if</span>(obj-&gt;size == <span class="number">1</span>) &#123;</span><br><span class="line">        obj-&gt;mins[obj-&gt;size<span class="number">-1</span>] = val;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(val &lt; obj-&gt;mins[obj-&gt;size<span class="number">-2</span>]) &#123;</span><br><span class="line">            obj-&gt;mins[obj-&gt;size<span class="number">-1</span>] = val;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            obj-&gt;mins[obj-&gt;size<span class="number">-1</span>] = obj-&gt;mins[obj-&gt;size<span class="number">-2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">minStackPop</span><span class="params">(MinStack* obj)</span> &#123;</span><br><span class="line">    obj-&gt;size--;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">minStackTop</span><span class="params">(MinStack* obj)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> obj-&gt;data[obj-&gt;size<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">minStackGetMin</span><span class="params">(MinStack* obj)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> obj-&gt;mins[obj-&gt;size<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">minStackFree</span><span class="params">(MinStack* obj)</span> &#123;</span><br><span class="line">    <span class="built_in">free</span>(obj-&gt;data);</span><br><span class="line">    <span class="built_in">free</span>(obj-&gt;mins);</span><br><span class="line">    <span class="built_in">free</span>(obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Solution 2: 辅助栈：力扣</strong></p>
+<h3 id="543-Diameter-of-Binary-Tree"><a href="#543-Diameter-of-Binary-Tree" class="headerlink" title="543. Diameter of Binary Tree"></a>543. Diameter of Binary Tree</h3><p>Given the <code>root</code> of a binary tree, return <em>the length of the <strong>diameter</strong> of the tree</em>.</p>
+<p>The <strong>diameter</strong> of a binary tree is the <strong>length</strong> of the longest path between any two nodes in a tree. This path may or may not pass through the <code>root</code>.</p>
+<p>The <strong>length</strong> of a path between two nodes is represented by the number of edges between them.</p>
+<p><strong>Solution 1:</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假定一个结点root，先求出左枝最大深度，再求右枝最大深度，相加就是最大半径</span></span><br><span class="line"><span class="comment">// 最大半径不一定经过root，求出所有结点的最大半径，再比较就可以。</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">maxDepth</span><span class="params">(<span class="keyword">struct</span> TreeNode* root)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> left = maxDepth(root-&gt;left) + <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> right = maxDepth(root-&gt;right) + <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(left &gt; right) <span class="keyword">return</span> left;</span><br><span class="line">    <span class="keyword">return</span> right;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">diameterOfBinaryTree</span><span class="params">(<span class="keyword">struct</span> TreeNode* root)</span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> leftDep = maxDepth(root-&gt;left);</span><br><span class="line">    <span class="type">int</span> rightDep = maxDepth(root-&gt;right);</span><br><span class="line">    <span class="type">int</span> middleDia = leftDep + rightDep;</span><br><span class="line">    <span class="type">int</span> maxDia = middleDia;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> leftDia = diameterOfBinaryTree(root-&gt;left);</span><br><span class="line">    <span class="type">int</span> rightDia = diameterOfBinaryTree(root-&gt;right);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(leftDia &gt; maxDia) maxDia = leftDia;</span><br><span class="line">    <span class="keyword">if</span>(rightDia &gt; maxDia) maxDia = rightDia;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> maxDia;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="1046-Last-Stone-Weight"><a href="#1046-Last-Stone-Weight" class="headerlink" title="1046. Last Stone Weight"></a>1046. Last Stone Weight</h3><p>You are given an array of integers <code>stones</code> where <code>stones[i]</code> is the weight of the <code>ith</code> stone.</p>
+<p>We are playing a game with the stones. On each turn, we choose the <strong>heaviest two stones</strong> and smash them together. Suppose the heaviest two stones have weights <code>x</code> and <code>y</code> with <code>x &lt;= y</code>. The result of this smash is:</p>
+<ul>
+<li>  If <code>x == y</code>, both stones are destroyed, and</li>
+<li>  If <code>x != y</code>, the stone of weight <code>x</code> is destroyed, and the stone of weight <code>y</code> has new weight <code>y - x</code>.</li>
+</ul>
+<p>At the end of the game, there is <strong>at most one</strong> stone left.</p>
+<p>Return <em>the smallest possible weight of the left stone</em>. If there are no stones left, return <code>0</code>.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input: stones = [2,7,4,1,8,1]</span><br><span class="line">Output: 1</span><br><span class="line">Explanation: </span><br><span class="line">We combine 7<span class="built_in"> and </span>8 to get 1 so the<span class="built_in"> array </span>converts to [2,4,1,1,1] then,</span><br><span class="line">we combine 2<span class="built_in"> and </span>4 to get 2 so the<span class="built_in"> array </span>converts to [2,1,1,1] then,</span><br><span class="line">we combine 2<span class="built_in"> and </span>1 to get 1 so the<span class="built_in"> array </span>converts to [1,1,1] then,</span><br><span class="line">we combine 1<span class="built_in"> and </span>1 to get 0 so the<span class="built_in"> array </span>converts to [1] then that&#x27;s the value of the last stone.</span><br></pre></td></tr></table></figure>
+
+<p><strong>Solution 1:</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 返回最大重量</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">findBig</span><span class="params">(<span class="type">int</span>* stonesN)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1000</span>; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span>(stonesN[i] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            stonesN[i]--;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">lastStoneWeight</span><span class="params">(<span class="type">int</span>* stones, <span class="type">int</span> stonesSize)</span>&#123;</span><br><span class="line">    <span class="comment">// 该重量的石头有几个？</span></span><br><span class="line">    <span class="type">int</span> stonesN[<span class="number">1001</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; stonesSize; i++) &#123;</span><br><span class="line">        stonesN[stones[i]]++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 最大重量y，第二大重量x</span></span><br><span class="line">    <span class="type">int</span> y = findBig(stonesN);</span><br><span class="line">    <span class="type">int</span> x = findBig(stonesN);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(x != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// 摧毁之后再放回去</span></span><br><span class="line">        stonesN[y-x]++;</span><br><span class="line">        y = findBig(stonesN);</span><br><span class="line">        x = findBig(stonesN);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="525-Contiguous-Array"><a href="#525-Contiguous-Array" class="headerlink" title="525. Contiguous Array"></a>525. Contiguous Array</h3><p>Given a binary array <code>nums</code>, return <em>the maximum length of a contiguous subarray with an equal number of</em> <code>0</code> <em>and</em> <code>1</code>.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Input:</span> nums = [<span class="number">0</span>,<span class="number">1</span>]</span><br><span class="line"><span class="symbol">Output:</span> <span class="number">2</span></span><br><span class="line"><span class="symbol">Explanation:</span> [<span class="number">0</span>, <span class="number">1</span>] <span class="built_in">is</span> the longest contiguous subarray <span class="keyword">with</span> an equal number <span class="keyword">of</span> <span class="number">0</span> <span class="built_in">and</span> <span class="number">1</span>.</span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 2:</strong></p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Input:</span> nums = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>]</span><br><span class="line"><span class="symbol">Output:</span> <span class="number">2</span></span><br><span class="line"><span class="symbol">Explanation:</span> [<span class="number">0</span>, <span class="number">1</span>] (<span class="built_in">or</span> [<span class="number">1</span>, <span class="number">0</span>]) <span class="built_in">is</span> a longest contiguous subarray <span class="keyword">with</span> equal number <span class="keyword">of</span> <span class="number">0</span> <span class="built_in">and</span> <span class="number">1</span>.</span><br></pre></td></tr></table></figure>
+
+<p><strong>Solution 1: 前缀和</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Time Limit Exceeded</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">findMaxLength</span><span class="params">(<span class="type">int</span>* nums, <span class="type">int</span> numsSize)</span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; numsSize; i++)</span><br><span class="line">        <span class="keyword">if</span>(nums[i] == <span class="number">0</span>) nums[i] = <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> perSum[numsSize + <span class="number">1</span>];</span><br><span class="line">    perSum[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> counter = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; numsSize; i++) &#123;</span><br><span class="line">        counter += nums[i];</span><br><span class="line">        perSum[i + <span class="number">1</span>] = counter;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> maxLen = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; numsSize; i++) &#123;</span><br><span class="line">        <span class="type">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = numsSize; j &gt;= i; j--) &#123;</span><br><span class="line">            <span class="keyword">if</span>(perSum[i] == perSum[j]) &#123;</span><br><span class="line">                len = j - i;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(len &gt; maxLen) maxLen = len;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxLen;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Solution 2: 前缀和+哈希表</strong></p>
+<h3 id="238-Product-of-Array-Except-Self"><a href="#238-Product-of-Array-Except-Self" class="headerlink" title="238. Product of Array Except Self"></a>238. Product of Array Except Self</h3><p>Given an integer array <code>nums</code>, return <em>an array</em> <code>answer</code> <em>such that</em> <code>answer[i]</code> <em>is equal to the product of all the elements of</em> <code>nums</code> <em>except</em> <code>nums[i]</code>.</p>
+<p>The product of any prefix or suffix of <code>nums</code> is <strong>guaranteed</strong> to fit in a <strong>32-bit</strong> integer.</p>
+<p>You must write an algorithm that runs in <code>O(n)</code> time and without using the division operation.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Input</span>: nums =<span class="meta"> [1,2,3,4]</span></span><br><span class="line"><span class="attribute">Output</span>:<span class="meta"> [24,12,8,6]</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 2:</strong></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Input</span>: nums =<span class="meta"> [-1,1,0,-3,3]</span></span><br><span class="line"><span class="attribute">Output</span>:<span class="meta"> [0,0,9,0,0]</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Constraints:</strong></p>
+<ul>
+<li>  <code>2 &lt;= nums.length &lt;= 105</code></li>
+<li>  <code>-30 &lt;= nums[i] &lt;= 30</code></li>
+<li>  The product of any prefix or suffix of <code>nums</code> is <strong>guaranteed</strong> to fit in a <strong>32-bit</strong> integer.</li>
+</ul>
+<p><strong>Solution 1:</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>* <span class="title function_">productExceptSelf</span><span class="params">(<span class="type">int</span>* nums, <span class="type">int</span> numsSize, <span class="type">int</span>* returnSize)</span>&#123;</span><br><span class="line">    <span class="type">int</span> prefix[numsSize];</span><br><span class="line">    <span class="type">int</span> suffix[numsSize];</span><br><span class="line">    <span class="type">int</span>* ans = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span>) * numsSize);</span><br><span class="line">    *returnSize = numsSize;</span><br><span class="line">    </span><br><span class="line">    prefix[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; numsSize<span class="number">-1</span>; i++) &#123;</span><br><span class="line">        prefix[i] = prefix[i<span class="number">-1</span>] * nums[i];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    suffix[numsSize<span class="number">-1</span>] = nums[numsSize<span class="number">-1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = numsSize<span class="number">-2</span>; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">        suffix[i] = suffix[i+<span class="number">1</span>] * nums[i];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    ans[<span class="number">0</span>] = suffix[<span class="number">1</span>];</span><br><span class="line">    ans[numsSize<span class="number">-1</span>] = prefix[numsSize<span class="number">-2</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; numsSize - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        ans[i] = prefix[i<span class="number">-1</span>] * suffix[i+<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>**Solution 2: **</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>* <span class="title function_">productExceptSelf</span><span class="params">(<span class="type">int</span>* nums, <span class="type">int</span> numsSize, <span class="type">int</span>* returnSize)</span>&#123;</span><br><span class="line">    *returnSize = numsSize;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span>* ans = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span>) * numsSize);</span><br><span class="line">    <span class="type">int</span> left=<span class="number">1</span>, right=<span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i &lt; numsSize; i++)</span><br><span class="line">        ans[i] = <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;numsSize; i++) &#123;</span><br><span class="line">        ans[i] *= left;</span><br><span class="line">        left *= nums[i];</span><br><span class="line">        </span><br><span class="line">        ans[numsSize<span class="number">-1</span>-i] *= right;</span><br><span class="line">        right *= nums[numsSize<span class="number">-1</span>-i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="20-Valid-Parentheses"><a href="#20-Valid-Parentheses" class="headerlink" title="20. Valid Parentheses"></a>20. Valid Parentheses</h3><p>Given a string <code>s</code> containing just the characters <code>&#39;(&#39;</code>, <code>&#39;)&#39;</code>, <code>&#39;&#123;&#39;</code>, <code>&#39;&#125;&#39;</code>, <code>&#39;[&#39;</code> and <code>&#39;]&#39;</code>, determine if the input string is valid.</p>
+<p>An input string is valid if:</p>
+<ol>
+<li> Open brackets must be closed by the same type of brackets.</li>
+<li>Open brackets must be closed in the correct order.</li>
+</ol>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Input:</span> s = <span class="string">&quot;()&quot;</span></span><br><span class="line"><span class="symbol">Output:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 2:</strong></p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Input:</span> s = <span class="string">&quot;()[]&#123;&#125;&quot;</span></span><br><span class="line"><span class="symbol">Output:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 3:</strong></p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Input:</span> s = <span class="string">&quot;(]&quot;</span></span><br><span class="line"><span class="symbol">Output:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 4:</strong></p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Input:</span> s = <span class="string">&quot;([)]&quot;</span></span><br><span class="line"><span class="symbol">Output:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 5:</strong></p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Input:</span> s = <span class="string">&quot;&#123;[]&#125;&quot;</span></span><br><span class="line"><span class="symbol">Output:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Solution 1: 栈</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">trans</span><span class="params">(<span class="type">char</span> ch)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(ch == <span class="string">&#x27;&#125;&#x27;</span>) <span class="keyword">return</span> <span class="string">&#x27;&#123;&#x27;</span>;</span><br><span class="line">    <span class="keyword">if</span>(ch == <span class="string">&#x27;]&#x27;</span>) <span class="keyword">return</span> <span class="string">&#x27;[&#x27;</span>;</span><br><span class="line">    <span class="keyword">if</span>(ch == <span class="string">&#x27;)&#x27;</span>) <span class="keyword">return</span> <span class="string">&#x27;(&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">bool</span> <span class="title function_">isValid</span><span class="params">(<span class="type">char</span> * s)</span>&#123;</span><br><span class="line">    <span class="type">int</span> len = <span class="built_in">strlen</span>(s);</span><br><span class="line">    <span class="type">int</span> top = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="built_in">stack</span>[len];</span><br><span class="line">    <span class="type">int</span> ch;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">        ch = trans(s[i]);</span><br><span class="line">        <span class="keyword">if</span>(ch) &#123;</span><br><span class="line">            top--;</span><br><span class="line">            <span class="keyword">if</span>(top &lt; <span class="number">0</span> || <span class="built_in">stack</span>[top] != ch) <span class="keyword">return</span> <span class="literal">false</span>;  </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">stack</span>[top++] = s[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> top == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/exec/" rel="tag"># exec</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/tech/git1/" rel="prev" title="Github仓库初始化">
+                  <i class="fa fa-chevron-left"></i> Github仓库初始化
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/other/intro2/" rel="next" title="HDFS和P2P文件分发系统的比较">
+                  HDFS和P2P文件分发系统的比较 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">luyizheng</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdn.jsdelivr.net/npm/pdfobject@2.2.7/pdfobject.min.js","integrity":"sha256-ph3Dk89VmuTVXG6x/RDzk53SU9LPdAh1tpv0UvnDZ2I="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

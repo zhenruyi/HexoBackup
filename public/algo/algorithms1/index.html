@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon3/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon3/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon3/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon3/android-chrome-384x384.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhenruyi.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":20,"offset":45},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":null,"post_header":null,"post_body":null,"coll_header":null,"sidebar":"fadeInDown"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="《算法》第1章：基础。 基础编程模型，数据抽象，背包、队列和栈，算法分析，案例研究。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《算法》笔记：第1章  基础">
+<meta property="og:url" content="https://zhenruyi.github.io/algo/algorithms1/index.html">
+<meta property="og:site_name" content="zhenruyi">
+<meta property="og:description" content="《算法》第1章：基础。 基础编程模型，数据抽象，背包、队列和栈，算法分析，案例研究。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zhenruyi.github.io/images/algo-learn03Algorithms01Foundation1.png">
+<meta property="og:image" content="https://zhenruyi.github.io/images/algo-learn03Algorithms01Foundation2.png">
+<meta property="article:published_time" content="2022-04-11T07:53:17.000Z">
+<meta property="article:modified_time" content="2022-04-16T23:03:43.310Z">
+<meta property="article:author" content="luyizheng">
+<meta property="article:tag" content="learn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhenruyi.github.io/images/algo-learn03Algorithms01Foundation1.png">
+
+
+<link rel="canonical" href="https://zhenruyi.github.io/algo/algorithms1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://zhenruyi.github.io/algo/algorithms1/","path":"algo/algorithms1/","title":"《算法》笔记：第1章  基础"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>《算法》笔记：第1章  基础 | zhenruyi</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zhenruyi</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">done is better than perfect</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">7</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">34</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E5%9F%BA%E7%A1%80%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="nav-text">1.1 基础编程模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-1-%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="nav-text">1.1.1 程序的基本结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-2-%E5%8E%9F%E5%A7%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-text">1.1.2 原始数据类型与表达式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-3-%E8%AF%AD%E5%8F%A5"><span class="nav-text">1.1.3 语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-4-%E7%AE%80%E4%BE%BF%E8%AE%B0%E6%B3%95"><span class="nav-text">1.1.4 简便记法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-5-%E6%95%B0%E7%BB%84-%E5%88%87%E7%89%87"><span class="nav-text">1.1.5 数组&#x2F;切片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-6-%E6%96%B9%E6%B3%95-%E5%87%BD%E6%95%B0"><span class="nav-text">1.1.6 方法&#x2F;函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-7-API"><span class="nav-text">1.1.7 API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-8-%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-text">1.1.8 字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-9-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA"><span class="nav-text">1.1.9 输入输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-10-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="nav-text">1.1.10 二分查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-11-%E5%B1%95%E6%9C%9B"><span class="nav-text">1.1.11 展望</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E6%95%B0%E6%8D%AE%E6%8A%BD%E8%B1%A1"><span class="nav-text">1.2 数据抽象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1-%E4%BD%BF%E7%94%A8%E6%8A%BD%E8%B1%A1%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-text">1.2.1 使用抽象数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2-%E6%8A%BD%E8%B1%A1%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%BE%E4%BE%8B"><span class="nav-text">1.2.2 抽象数据类型举例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-3-%E6%8A%BD%E8%B1%A1%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-text">1.2.3 抽象数据类型的实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-4-%E6%9B%B4%E5%A4%9A%E6%8A%BD%E8%B1%A1%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-text">1.2.4 更多抽象数据类型的实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-5-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="nav-text">1.2.5 数据类型的设计</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E8%83%8C%E5%8C%85%E3%80%81%E9%98%9F%E5%88%97%E5%92%8C%E6%A0%88"><span class="nav-text">1.3 背包、队列和栈</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-1-API"><span class="nav-text">1.3.1 API</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-1-1-%E6%B3%9B%E5%9E%8B"><span class="nav-text">1.3.1.1 泛型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-1-2-%E8%87%AA%E5%8A%A8%E8%A3%85%E7%AE%B1"><span class="nav-text">1.3.1.2 自动装箱</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-1-3-%E5%8F%AF%E8%BF%AD%E4%BB%A3%E7%9A%84%E9%9B%86%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="nav-text">1.3.1.3 可迭代的集合类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-1-4-%E8%83%8C%E5%8C%85"><span class="nav-text">1.3.1.4 背包</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-1-5-%E9%98%9F%E5%88%97"><span class="nav-text">1.3.1.5 队列</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-1-6-%E6%A0%88"><span class="nav-text">1.3.1.6 栈</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-1-7-%E7%AE%97%E6%9C%AF%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-text">1.3.1.7 算术表达式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-2-%E9%9B%86%E5%90%88%E7%B1%BB%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-text">1.3.2 集合类数据类型的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-2-1-%E5%AE%9A%E5%AE%B9%E6%A0%88"><span class="nav-text">1.3.2.1 定容栈</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-2-2-%E6%B3%9B%E5%9E%8B%EF%BC%88%E8%BF%99%E9%87%8C%E7%94%A8interface-%EF%BC%89"><span class="nav-text">1.3.2.2 泛型（这里用interface{}）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-2-3-%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E5%A4%A7%E5%B0%8F"><span class="nav-text">1.3.2.3 调整数组大小</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-2-4-%E5%AF%B9%E8%B1%A1%E6%B8%B8%E7%A6%BB"><span class="nav-text">1.3.2.4 对象游离</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-3-%E9%93%BE%E8%A1%A8"><span class="nav-text">1.3.3 链表</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-3-1-%E7%BB%93%E7%82%B9%E8%AE%B0%E5%BD%95"><span class="nav-text">1.3.3.1 结点记录</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-3-2-%E6%9E%84%E9%80%A0%E9%93%BE%E8%A1%A8"><span class="nav-text">1.3.3.2 构造链表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-3-3-%E8%A1%A8%E5%A4%B4%E6%8F%92%E5%85%A5%E7%BB%93%E7%82%B9"><span class="nav-text">1.3.3.3 表头插入结点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-3-4-%E4%BB%8E%E8%A1%A8%E5%A4%B4%E5%88%A0%E9%99%A4%E7%BB%93%E7%82%B9"><span class="nav-text">1.3.3.4 从表头删除结点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-3-5-%E4%BB%8E%E8%A1%A8%E5%B0%BE%E6%8F%92%E5%85%A5%E7%BB%93%E7%82%B9"><span class="nav-text">1.3.3.5 从表尾插入结点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-3-6-%E5%85%B6%E4%BB%96%E4%BD%8D%E7%BD%AE%E7%9A%84%E6%8F%92%E5%85%A5%E5%92%8C%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C"><span class="nav-text">1.3.3.6 其他位置的插入和删除操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-3-7-%E9%81%8D%E5%8E%86%E6%93%8D%E4%BD%9C"><span class="nav-text">1.3.3.7 遍历操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-3-8-%E6%A0%88%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-text">1.3.3.8 栈的实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-3-9-%E9%98%9F%E5%88%97%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-text">1.3.3.9 队列的实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-3-10-%E8%83%8C%E5%8C%85%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-text">1.3.3.10 背包的实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-4-%E7%BB%BC%E8%BF%B0"><span class="nav-text">1.3.4 综述</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90"><span class="nav-text">1.4 算法分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-1-%E7%A7%91%E5%AD%A6%E6%96%B9%E6%B3%95"><span class="nav-text">1.4.1 科学方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-2-%E8%A7%82%E5%AF%9F"><span class="nav-text">1.4.2 观察</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-3-%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B"><span class="nav-text">1.4.3 数学模型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-4-3-1-%E8%BF%91%E4%BC%BC"><span class="nav-text">1.4.3.1 近似</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-4-3-2-%E8%BF%91%E4%BC%BC%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4"><span class="nav-text">1.4.3.2 近似运行时间</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-4-3-3-%E5%AF%B9%E5%A2%9E%E9%95%BF%E6%95%B0%E9%87%8F%E7%BA%A7%E7%9A%84%E7%8C%9C%E6%83%B3"><span class="nav-text">1.4.3.3 对增长数量级的猜想</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-4-%E5%A2%9E%E9%95%BF%E6%95%B0%E9%87%8F%E7%BA%A7%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-text">1.4.4 增长数量级的分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-7-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-text">1.4.7 注意事项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-%E6%A1%88%E4%BE%8B%E7%A0%94%E7%A9%B6%EF%BC%9Aunion-find%E7%AE%97%E6%B3%95"><span class="nav-text">1.5 案例研究：union-find算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#union-find%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-text">union-find的实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#union%E6%96%B9%E6%B3%95%E5%92%8Cfind%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-text">union方法和find方法的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#quick-find%E7%AE%97%E6%B3%95"><span class="nav-text">quick-find算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#quick-union%E7%AE%97%E6%B3%95"><span class="nav-text">quick-union算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8A%A0%E6%9D%83quick-union%E7%AE%97%E6%B3%95"><span class="nav-text">加权quick-union算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E7%89%B9%E7%82%B9"><span class="nav-text">性能特点</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="luyizheng"
+      src="/images/avatar2.jpg">
+  <p class="site-author-name" itemprop="name">luyizheng</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhenruyi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhenruyi" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/jugenlu" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;jugenlu" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://m.weibo.cn/u/3017941811" title="Weibo → https:&#x2F;&#x2F;m.weibo.cn&#x2F;u&#x2F;3017941811" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:cs19b022@163.com" title="E-Mail → mailto:cs19b022@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/24837978" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;24837978" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>Bilibili</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://zhenruyi.github.io/images/OfficialAccountCode.jpg" title="WechatOfficial → https:&#x2F;&#x2F;zhenruyi.github.io&#x2F;images&#x2F;OfficialAccountCode.jpg"><i class="fab fa-weixin fa-fw"></i>WechatOfficial</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      they are very lovely
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/672346917/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;672346917&#x2F;" rel="noopener" target="_blank">AVA向晚</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/672353429/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;672353429&#x2F;" rel="noopener" target="_blank">Bella贝拉</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/351609538/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;351609538&#x2F;" rel="noopener" target="_blank">Carol珈乐</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/672328094/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;672328094&#x2F;" rel="noopener" target="_blank">Diana嘉然</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/672342685/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;672342685&#x2F;" rel="noopener" target="_blank">Eileen乃琳</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zhenruyi.github.io/algo/algorithms1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+      <meta itemprop="name" content="luyizheng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhenruyi">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="《算法》笔记：第1章  基础 | zhenruyi">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          《算法》笔记：第1章  基础
+        </h1>
+
+        <div class="post-meta-container">
+
+        
+
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-04-11 15:53:17" itemprop="dateCreated datePublished" datetime="2022-04-11T15:53:17+08:00">2022-04-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-04-17 07:03:43" itemprop="dateModified" datetime="2022-04-17T07:03:43+08:00">2022-04-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/algo/" itemprop="url" rel="index"><span itemprop="name">algo</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>《算法》第1章：基础。</p>
+<p>基础编程模型，数据抽象，背包、队列和栈，算法分析，案例研究。</p>
+<span id="more"></span>
+
+
+
+<hr>
+<p>算法是适合用计算机实现的解决问题的方法。和算法关系最密切的是数据结构，数据结构是便于算法操作的组织数据的方法。</p>
+<p>本章内容：</p>
+<ul>
+<li>基础编程模型：语法，语言特性，库；</li>
+<li>数据抽象：抽象数据类型，模块化编程；</li>
+<li>三种基础的抽象数据类型：背包、队列和栈；</li>
+<li>算法分析：性能；</li>
+<li>例子：union-find算法。</li>
+</ul>
+<hr>
+<h3 id="1-1-基础编程模型"><a href="#1-1-基础编程模型" class="headerlink" title="1.1 基础编程模型"></a>1.1 基础编程模型</h3><p>使用编程语言实现算法，出于以下原因：</p>
+<ul>
+<li>程序是对算法精确、优雅和完全的描述；</li>
+<li>通过运行程序学习算法的各种性质；</li>
+<li>直接使用这些算法。</li>
+</ul>
+<p>这样做的一个缺点是，使用特定语言，使分离算法的思想和实现细节变得困难。</p>
+<p>基础编程模型：描述和实现算法所用到的语言特性、软件库和操作系统特性的总称。</p>
+<h4 id="1-1-1-程序的基本结构"><a href="#1-1-1-程序的基本结构" class="headerlink" title="1.1.1 程序的基本结构"></a>1.1.1 程序的基本结构</h4><p>语法，是大多数现代语言共有的：</p>
+<ul>
+<li>原始数据类型：精确定义了整数、浮点数和布尔值，定义包括取值范围和操作。</li>
+<li>语句：六种语句，包括声明、赋值、条件、循环、调用和返回。</li>
+<li>数组、字符串。</li>
+<li>函数/方法。</li>
+<li>标准输入输出。</li>
+<li>数据抽象：数据抽象封装和重用，定义非原始数据类型，进而支持面向对象编程。</li>
+</ul>
+<h4 id="1-1-2-原始数据类型与表达式"><a href="#1-1-2-原始数据类型与表达式" class="headerlink" title="1.1.2 原始数据类型与表达式"></a>1.1.2 原始数据类型与表达式</h4><p>语言的基础知识：表达式、类型转换、比较和其他原始数据类型。</p>
+<h4 id="1-1-3-语句"><a href="#1-1-3-语句" class="headerlink" title="1.1.3 语句"></a>1.1.3 语句</h4><p>六种语句。</p>
+<h4 id="1-1-4-简便记法"><a href="#1-1-4-简便记法" class="headerlink" title="1.1.4 简便记法"></a>1.1.4 简便记法</h4><p>目的：追求清晰、优雅和高效的代码：</p>
+<ul>
+<li>声明并初始化。在golang中，使用符号:=。</li>
+<li>隐式赋值：i++，+=。</li>
+</ul>
+<h4 id="1-1-5-数组-切片"><a href="#1-1-5-数组-切片" class="headerlink" title="1.1.5 数组/切片"></a>1.1.5 数组/切片</h4><p>顺序存储同类型的多个数据。</p>
+<ul>
+<li>创建并初始化：注意初始值。</li>
+<li>注意指针和引用。</li>
+<li>二维数组</li>
+</ul>
+<h4 id="1-1-6-方法-函数"><a href="#1-1-6-方法-函数" class="headerlink" title="1.1.6 方法/函数"></a>1.1.6 方法/函数</h4><p>外部库使用import导入。</p>
+<h4 id="1-1-7-API"><a href="#1-1-7-API" class="headerlink" title="1.1.7 API"></a>1.1.7 API</h4><p>模块化编程的一个重要的组成部分就是记录库方法的用法并提供其他人参考的文档。统一使用应用程序编程接口。</p>
+<h4 id="1-1-8-字符串"><a href="#1-1-8-字符串" class="headerlink" title="1.1.8 字符串"></a>1.1.8 字符串</h4><p>字符串拼接+，类型转换strconv。</p>
+<p>自动转换：+的一边是字符串，会自动将其他转换成字符串。</p>
+<h4 id="1-1-9-输入输出"><a href="#1-1-9-输入输出" class="headerlink" title="1.1.9 输入输出"></a>1.1.9 输入输出</h4><p>标准输入输出：fmt。</p>
+<h4 id="1-1-10-二分查找"><a href="#1-1-10-二分查找" class="headerlink" title="1.1.10 二分查找"></a>1.1.10 二分查找</h4><h4 id="1-1-11-展望"><a href="#1-1-11-展望" class="headerlink" title="1.1.11 展望"></a>1.1.11 展望</h4><p>数据抽象，有时也被称为面向对象编程。使用数据抽象的理由：</p>
+<ul>
+<li>允许通过模块化编程复用代码。</li>
+<li>轻易构造更多链式数据结构，它们比数组更灵活，是高效算法的基础。</li>
+<li>准确定义算法问题。</li>
+</ul>
+<hr>
+<h3 id="1-2-数据抽象"><a href="#1-2-数据抽象" class="headerlink" title="1.2 数据抽象"></a>1.2 数据抽象</h3><p>数据类型：一组值和一组对这些值的操作的集合。</p>
+<p>数据抽象：定义和使用数据类型的过程。</p>
+<p>抽象数据类型：封装后的数据类型。</p>
+<h4 id="1-2-1-使用抽象数据类型"><a href="#1-2-1-使用抽象数据类型" class="headerlink" title="1.2.1 使用抽象数据类型"></a>1.2.1 使用抽象数据类型</h4><p>要使用一种数据类型并不一定非得知道它是怎么实现的。</p>
+<h4 id="1-2-2-抽象数据类型举例"><a href="#1-2-2-抽象数据类型举例" class="headerlink" title="1.2.2 抽象数据类型举例"></a>1.2.2 抽象数据类型举例</h4><p>各类库。</p>
+<h4 id="1-2-3-抽象数据类型的实现"><a href="#1-2-3-抽象数据类型的实现" class="headerlink" title="1.2.3 抽象数据类型的实现"></a>1.2.3 抽象数据类型的实现</h4><ul>
+<li>实例变量：类的实例。</li>
+<li>构造函数：跟类同名的函数。</li>
+<li>实例方法。</li>
+<li>作用域：参数变量，局部变量，实例变量。</li>
+</ul>
+<h4 id="1-2-4-更多抽象数据类型的实现"><a href="#1-2-4-更多抽象数据类型的实现" class="headerlink" title="1.2.4 更多抽象数据类型的实现"></a>1.2.4 更多抽象数据类型的实现</h4><p>第三方库。</p>
+<h4 id="1-2-5-数据类型的设计"><a href="#1-2-5-数据类型的设计" class="headerlink" title="1.2.5 数据类型的设计"></a>1.2.5 数据类型的设计</h4><p>抽象数据类型是一种向用例隐藏内部表示的数据类型。这种思想强有力地影响了现代编程。</p>
+<ul>
+<li>封装：并不需要知道怎么实现的。</li>
+<li>设计API：构建现代软件最重要也是最有挑战的一项任务就是设计API。</li>
+<li>算法与抽象数据类型。</li>
+<li>接口继承。</li>
+<li>实现继承。</li>
+<li>等价性。</li>
+<li>内存管理。</li>
+<li>不可变性。</li>
+<li>异常处理。</li>
+<li>断言。</li>
+</ul>
+<hr>
+<h3 id="1-3-背包、队列和栈"><a href="#1-3-背包、队列和栈" class="headerlink" title="1.3 背包、队列和栈"></a>1.3 背包、队列和栈</h3><p>许多基础数据类型都和对象的集合有关，所有的操作都是对对象的增删改查。</p>
+<p>三种数据类型：背包(Bag)、队列(Queue)、栈(Stack)，它们不同之处就是删除或者访问对象的顺序不同。</p>
+<p>本节目标：</p>
+<ul>
+<li>说明对集合的表示方法，直接影响到各种操作的效率，要设计适用于对象的数据结构并高效地实现所需要的方法。</li>
+<li>介绍泛型和迭代，Java概念。</li>
+<li>说明链式数据结构的重要性，特别是经典的链表，有了它才能高效实现上述三种数据结构。</li>
+</ul>
+<h4 id="1-3-1-API"><a href="#1-3-1-API" class="headerlink" title="1.3.1 API"></a>1.3.1 API</h4><table>
+<thead>
+<tr>
+<th>Bag</th>
+<th>Queue</th>
+<th>Stack</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NewBag()<br />go语言没有构造函数，所以使用该方法。</td>
+<td>NewQueue()</td>
+<td>NewStack()</td>
+</tr>
+<tr>
+<td>add(item)</td>
+<td>enQueue(item)</td>
+<td>push(item)</td>
+</tr>
+<tr>
+<td></td>
+<td>deQueue()</td>
+<td>pop()</td>
+</tr>
+<tr>
+<td>isEmpty()</td>
+<td>isEmpty()</td>
+<td>isEmpty()</td>
+</tr>
+<tr>
+<td>size()</td>
+<td>size()</td>
+<td>size()</td>
+</tr>
+</tbody></table>
+<h5 id="1-3-1-1-泛型"><a href="#1-3-1-1-泛型" class="headerlink" title="1.3.1.1 泛型"></a>1.3.1.1 泛型</h5><p>只需要一份API就能处理所有类型的数据。</p>
+<p>go1.18开始支持泛型。</p>
+<h5 id="1-3-1-2-自动装箱"><a href="#1-3-1-2-自动装箱" class="headerlink" title="1.3.1.2 自动装箱"></a>1.3.1.2 自动装箱</h5><p>自动将一个原始数据类型转换为一个封装类型被称为自动装箱。例如，int -&gt; Interger。</p>
+<p>自动拆箱。</p>
+<h5 id="1-3-1-3-可迭代的集合类型"><a href="#1-3-1-3-可迭代的集合类型" class="headerlink" title="1.3.1.3 可迭代的集合类型"></a>1.3.1.3 可迭代的集合类型</h5><p>处理集合中的每一个元素，或者叫做迭代访问集合中的所有元素。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">切片：</span><br><span class="line"><span class="keyword">for</span> index, value := <span class="keyword">range</span> slice &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">字典：</span><br><span class="line"><span class="keyword">for</span> key, value := <span class="keyword">range</span> <span class="keyword">map</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-3-1-4-背包"><a href="#1-3-1-4-背包" class="headerlink" title="1.3.1.4 背包"></a>1.3.1.4 背包</h5><ul>
+<li>不支持删除元素的集合数据类型。</li>
+<li>目的：帮助收集元素并迭代遍历所有元素。迭代的顺序不确定且与用例无关。</li>
+<li>也可以使用队列和栈，只用背包说明处理顺序不重要。</li>
+</ul>
+<h5 id="1-3-1-5-队列"><a href="#1-3-1-5-队列" class="headerlink" title="1.3.1.5 队列"></a>1.3.1.5 队列</h5><ul>
+<li>先进先出。</li>
+<li>可以使用数组实现，循环的指针。可以使用链表实现。</li>
+</ul>
+<h5 id="1-3-1-6-栈"><a href="#1-3-1-6-栈" class="headerlink" title="1.3.1.6 栈"></a>1.3.1.6 栈</h5><p>下压栈，简称栈。</p>
+<h5 id="1-3-1-7-算术表达式"><a href="#1-3-1-7-算术表达式" class="headerlink" title="1.3.1.7 算术表达式"></a>1.3.1.7 算术表达式</h5><p>如何按照正确的顺序处理算术表达式。20世纪60年代，Dijkstra发明了一个非常简单的算法，使用两个栈，一个保存运算符，一个保存操作数。</p>
+<ul>
+<li>将操作数压入操作数栈。</li>
+<li>将运算符压入运算符栈。</li>
+<li>忽略左括号。</li>
+<li>遇到右括号，弹出一个运算符，弹出所需数量的操作数，并将运算结果压入操作数栈。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Dijkstra的双栈算术表达式求值算法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Evaluate</span><span class="params">(exp <span class="type">string</span>)</span></span> <span class="type">float64</span> &#123;</span><br><span class="line">	<span class="comment">// 双栈</span></span><br><span class="line">	ops := list.New()</span><br><span class="line">	vals := list.New()</span><br><span class="line">	<span class="comment">// 处理数字</span></span><br><span class="line">	val := <span class="string">&quot;&quot;</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(exp); i++ &#123;</span><br><span class="line">		<span class="comment">// 不处理空格和(</span></span><br><span class="line">		<span class="keyword">if</span> exp[i] == <span class="string">&#x27; &#x27;</span> || exp[i] == <span class="string">&#x27;(&#x27;</span>&#123;</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 如果是数字，则拼接</span></span><br><span class="line">		val += <span class="type">string</span>(exp[i])</span><br><span class="line">		<span class="keyword">if</span> i+<span class="number">1</span> &lt; <span class="built_in">len</span>(exp) &amp;&amp; isNum(exp[i]) &amp;&amp; isNum(exp[i+<span class="number">1</span>]) &#123;</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 算术表达式处理</span></span><br><span class="line">		<span class="keyword">switch</span> &#123;</span><br><span class="line">		<span class="comment">// 数字的处理</span></span><br><span class="line">		<span class="keyword">case</span> <span class="built_in">len</span>(val) &gt; <span class="number">1</span> || (exp[i] &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; exp[i] &lt;= <span class="string">&#x27;9&#x27;</span>):</span><br><span class="line">			v, _ := strconv.ParseFloat(val, <span class="number">64</span>)</span><br><span class="line">			vals.PushBack(v)</span><br><span class="line">		<span class="comment">// 运算符的处理</span></span><br><span class="line">		<span class="keyword">case</span> exp[i] == <span class="string">&#x27;+&#x27;</span> || exp[i] == <span class="string">&#x27;-&#x27;</span> || exp[i] == <span class="string">&#x27;*&#x27;</span> || exp[i] == <span class="string">&#x27;/&#x27;</span>:</span><br><span class="line">			ops.PushBack(exp[i])</span><br><span class="line">		<span class="comment">// 遇到反括号，进行一次运算</span></span><br><span class="line">		<span class="keyword">case</span> exp[i] == <span class="string">&#x27;)&#x27;</span>:</span><br><span class="line">			<span class="comment">// 运算符出栈</span></span><br><span class="line">			curOp := ops.Remove(ops.Back()).(<span class="type">uint8</span>)</span><br><span class="line">			<span class="comment">// 操作数出栈</span></span><br><span class="line">			curVal2 := vals.Remove(vals.Back()).(<span class="type">float64</span>)</span><br><span class="line">			curVal1 := vals.Remove(vals.Back()).(<span class="type">float64</span>)</span><br><span class="line">			<span class="keyword">switch</span> curOp &#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">&#x27;+&#x27;</span>: vals.PushBack(curVal1 + curVal2)</span><br><span class="line">			<span class="keyword">case</span> <span class="string">&#x27;-&#x27;</span>: vals.PushBack(curVal1 - curVal2)</span><br><span class="line">			<span class="keyword">case</span> <span class="string">&#x27;*&#x27;</span>: vals.PushBack(curVal1 * curVal2)</span><br><span class="line">			<span class="keyword">case</span> <span class="string">&#x27;/&#x27;</span>: vals.PushBack(curVal1 / curVal2)</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">		&#125;</span><br><span class="line">		val = <span class="string">&quot;&quot;</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> vals.Front().Value.(<span class="type">float64</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 判断是不是数字</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">isNum</span><span class="params">(val <span class="type">uint8</span>)</span></span> <span class="type">bool</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> val &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; val &lt;= <span class="string">&#x27;9&#x27;</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 可能是浮点数</span></span><br><span class="line">	<span class="keyword">if</span> val == <span class="string">&#x27;.&#x27;</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3-2-集合类数据类型的实现"><a href="#1-3-2-集合类数据类型的实现" class="headerlink" title="1.3.2 集合类数据类型的实现"></a>1.3.2 集合类数据类型的实现</h4><p>在讨论Bag、Stack和Queue的实现之前，先给出一个简单而经典的实现，它的改进就得到我们所要的结果。</p>
+<h5 id="1-3-2-1-定容栈"><a href="#1-3-2-1-定容栈" class="headerlink" title="1.3.2.1 定容栈"></a>1.3.2.1 定容栈</h5><p>表示容量固定的字符串栈，只处理string，需要指定一个容量且不支持迭代。</p>
+<table>
+<thead>
+<tr>
+<th>FixedCapStackOfStrings</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>newFixedCapStackOfStrings(cap int)</td>
+<td>创建一个容量为cap的空栈</td>
+</tr>
+<tr>
+<td>push(item)</td>
+<td>添加一个字符串</td>
+</tr>
+<tr>
+<td>pop()</td>
+<td>删除最近添加的字符串</td>
+</tr>
+<tr>
+<td>isEmpty()</td>
+<td>栈是否为空</td>
+</tr>
+<tr>
+<td>size()</td>
+<td>字符串数量</td>
+</tr>
+</tbody></table>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> FixedCapStackOfStrings <span class="keyword">struct</span> &#123;</span><br><span class="line">	Strs []<span class="type">string</span></span><br><span class="line">	N <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewFixedCapStackOfStrings</span><span class="params">(capacity <span class="type">int</span>)</span></span> *FixedCapStackOfStrings &#123;</span><br><span class="line">	<span class="keyword">return</span> &amp;FixedCapStackOfStrings&#123;</span><br><span class="line">		N: capacity,</span><br><span class="line">		Strs: <span class="built_in">make</span>([]<span class="type">string</span>, <span class="number">0</span>),</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *FixedCapStackOfStrings)</span></span> IsEmpty() <span class="type">bool</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">len</span>(s.Strs) == <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *FixedCapStackOfStrings)</span></span> Size() <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">len</span>(s.Strs)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *FixedCapStackOfStrings)</span></span> Push(item <span class="type">string</span>) <span class="type">bool</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> s.Size() &gt;= s.N &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">	&#125;</span><br><span class="line">	s.Strs = <span class="built_in">append</span>(s.Strs, item)</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *FixedCapStackOfStrings)</span></span> Pop() <span class="type">string</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> s.Size() == <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;&quot;</span></span><br><span class="line">	&#125;</span><br><span class="line">	res := s.Strs[s.Size()<span class="number">-1</span>]</span><br><span class="line">	s.Strs = s.Strs[:s.Size()<span class="number">-1</span>]</span><br><span class="line">	<span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-3-2-2-泛型（这里用interface-）"><a href="#1-3-2-2-泛型（这里用interface-）" class="headerlink" title="1.3.2.2 泛型（这里用interface{}）"></a>1.3.2.2 泛型（这里用interface{}）</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> FixedCapStack <span class="keyword">struct</span> &#123;</span><br><span class="line">	data []<span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">	capa <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewFixedCapStack</span><span class="params">(capacity <span class="type">int</span>)</span></span> *FixedCapStack &#123;</span><br><span class="line">	<span class="keyword">return</span> &amp;FixedCapStack&#123;</span><br><span class="line">		capa: capacity,</span><br><span class="line">		data: <span class="built_in">make</span>([]<span class="keyword">interface</span>&#123;&#125;, <span class="number">0</span>),</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *FixedCapStack)</span></span> IsEmpty() <span class="type">bool</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">len</span>(s.data) == <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *FixedCapStack)</span></span> Size() <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">len</span>(s.data)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *FixedCapStack)</span></span> Push(d <span class="keyword">interface</span>&#123;&#125;) <span class="type">bool</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(s.data) &gt;= s.capa &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">	&#125;</span><br><span class="line">	s.data = <span class="built_in">append</span>(s.data, d)</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *FixedCapStack)</span></span> Pop() <span class="keyword">interface</span>&#123;&#125; &#123;</span><br><span class="line">	<span class="keyword">if</span> s.Size() == <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">	&#125;</span><br><span class="line">	res := s.data[s.Size()<span class="number">-1</span>]</span><br><span class="line">	s.data = s.data[:s.Size()<span class="number">-1</span>]</span><br><span class="line">	<span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-3-2-3-调整数组大小"><a href="#1-3-2-3-调整数组大小" class="headerlink" title="1.3.2.3 调整数组大小"></a>1.3.2.3 调整数组大小</h5><p>使用一个resize方法。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *FixedCapStack)</span></span> Resize(size <span class="type">int</span>) &#123;</span><br><span class="line">	s.capa *= <span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-3-2-4-对象游离"><a href="#1-3-2-4-对象游离" class="headerlink" title="1.3.2.4 对象游离"></a>1.3.2.4 对象游离</h5><p>在Java中，被弹出的元素的引用还在数组中，这个元素已经不会再被访问，但Java垃圾收集器没办法知道这一点，除非引用被覆盖。</p>
+<p>解决办法：弹出时设为null。</p>
+<h4 id="1-3-3-链表"><a href="#1-3-3-链表" class="headerlink" title="1.3.3 链表"></a>1.3.3 链表</h4><p>链表是一种递归的数据结构，它或者为空，或者指向下一个节点的引用。</p>
+<h5 id="1-3-3-1-结点记录"><a href="#1-3-3-1-结点记录" class="headerlink" title="1.3.3.1 结点记录"></a>1.3.3.1 结点记录</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Node <span class="keyword">struct</span> &#123;</span><br><span class="line">    Data <span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">    Next *Node</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-3-3-2-构造链表"><a href="#1-3-3-2-构造链表" class="headerlink" title="1.3.3.2 构造链表"></a>1.3.3.2 构造链表</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NodeName := <span class="built_in">new</span>(Node)</span><br><span class="line">NodeName.data = <span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">NodeName.Next = .......</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-3-3-3-表头插入结点"><a href="#1-3-3-3-表头插入结点" class="headerlink" title="1.3.3.3 表头插入结点"></a>1.3.3.3 表头插入结点</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NewNode := <span class="built_in">new</span>(Node)</span><br><span class="line">NewNode.Next = first</span><br><span class="line">first = NewNode</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-3-3-4-从表头删除结点"><a href="#1-3-3-4-从表头删除结点" class="headerlink" title="1.3.3.4 从表头删除结点"></a>1.3.3.4 从表头删除结点</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">first = first.Next</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-3-3-5-从表尾插入结点"><a href="#1-3-3-5-从表尾插入结点" class="headerlink" title="1.3.3.5 从表尾插入结点"></a>1.3.3.5 从表尾插入结点</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Last := <span class="built_in">new</span>(Node)</span><br><span class="line">OldLast.Next = Last</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-3-3-6-其他位置的插入和删除操作"><a href="#1-3-3-6-其他位置的插入和删除操作" class="headerlink" title="1.3.3.6 其他位置的插入和删除操作"></a>1.3.3.6 其他位置的插入和删除操作</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">先遍历，找到位置进行插入和删除操作。</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-3-3-7-遍历操作"><a href="#1-3-3-7-遍历操作" class="headerlink" title="1.3.3.7 遍历操作"></a>1.3.3.7 遍历操作</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> p := first; p ! = <span class="literal">nil</span>; p = p.Next &#123;</span><br><span class="line">    do something</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-3-3-8-栈的实现"><a href="#1-3-3-8-栈的实现" class="headerlink" title="1.3.3.8 栈的实现"></a>1.3.3.8 栈的实现</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Node <span class="keyword">struct</span> &#123;</span><br><span class="line">	data <span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">	next *Node</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> ListStack <span class="keyword">struct</span> &#123;</span><br><span class="line">	first *Node</span><br><span class="line">	length <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(l *ListStack)</span></span> IsEmpty() <span class="type">bool</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> l.length == <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(l *ListStack)</span></span> Size() <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> l.length</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(l *ListStack)</span></span> Push(elem <span class="keyword">interface</span>&#123;&#125;) &#123;</span><br><span class="line">	node := <span class="built_in">new</span>(Node)</span><br><span class="line">	node.data = elem</span><br><span class="line">	node.next = l.first</span><br><span class="line">	l.first = node</span><br><span class="line">	l.length++</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(l *ListStack)</span></span> Pop() <span class="keyword">interface</span>&#123;&#125; &#123;</span><br><span class="line">	ret := l.first</span><br><span class="line">	l.first = l.first.next</span><br><span class="line">	l.length--</span><br><span class="line">	<span class="keyword">return</span> ret.data</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-3-3-9-队列的实现"><a href="#1-3-3-9-队列的实现" class="headerlink" title="1.3.3.9 队列的实现"></a>1.3.3.9 队列的实现</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> ListQueue <span class="keyword">struct</span> &#123;</span><br><span class="line">	first *Node</span><br><span class="line">	last *Node</span><br><span class="line">	length <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(l *ListQueue)</span></span> IsEmpty() <span class="type">bool</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> l.length == <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(l *ListQueue)</span></span> Size() <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> l.length</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(l *ListQueue)</span></span> Enqueue(item <span class="keyword">interface</span>&#123;&#125;) &#123;</span><br><span class="line">	node := <span class="built_in">new</span>(Node)</span><br><span class="line">	node.data = item</span><br><span class="line">	node.next = <span class="literal">nil</span></span><br><span class="line">	<span class="keyword">if</span> l.length == <span class="number">0</span> &#123;</span><br><span class="line">		l.first = node</span><br><span class="line">		l.last = node</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		l.last.next = node</span><br><span class="line">		l.last = node</span><br><span class="line">	&#125;</span><br><span class="line">	l.length++</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(l *ListQueue)</span></span> Dequeue() <span class="keyword">interface</span>&#123;&#125; &#123;</span><br><span class="line">	<span class="keyword">if</span> l.IsEmpty() &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">	&#125;</span><br><span class="line">	ret := l.first.data</span><br><span class="line">	l.first = l.first.next</span><br><span class="line">	l.length--</span><br><span class="line">	<span class="keyword">if</span> l.IsEmpty() &#123;</span><br><span class="line">		l.last = <span class="literal">nil</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-3-3-10-背包的实现"><a href="#1-3-3-10-背包的实现" class="headerlink" title="1.3.3.10 背包的实现"></a>1.3.3.10 背包的实现</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> ListBag <span class="keyword">struct</span> &#123;</span><br><span class="line">	first *Node</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(l *ListBag)</span></span> Add(item <span class="keyword">interface</span>&#123;&#125;) &#123;</span><br><span class="line">	node := <span class="built_in">new</span>(Node)</span><br><span class="line">	node.data = item</span><br><span class="line">	node.next = l.first</span><br><span class="line">	l.first = node</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 迭代，返回一个切片</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(l *ListBag)</span></span> Iterator() []<span class="keyword">interface</span>&#123;&#125; &#123;</span><br><span class="line">	ret := <span class="built_in">make</span>([]<span class="keyword">interface</span>&#123;&#125;, <span class="number">0</span>)</span><br><span class="line">	<span class="keyword">for</span> node := l.first; node != <span class="literal">nil</span>; node = node.next &#123;</span><br><span class="line">		ret = <span class="built_in">append</span>(ret, node.data)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-3-4-综述"><a href="#1-3-4-综述" class="headerlink" title="1.3.4 综述"></a>1.3.4 综述</h4><ul>
+<li>数组<ul>
+<li>优点：通过索引直接访问任意元素。</li>
+<li>缺点：初始化需要知道元素的数量，但在go可以使用切片。</li>
+</ul>
+</li>
+<li>链表<ul>
+<li>使用空间大小和元素数量成正比。</li>
+<li>需要通过遍历访问元素。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="1-4-算法分析"><a href="#1-4-算法分析" class="headerlink" title="1.4 算法分析"></a>1.4 算法分析</h3><h4 id="1-4-1-科学方法"><a href="#1-4-1-科学方法" class="headerlink" title="1.4.1 科学方法"></a>1.4.1 科学方法</h4><p>爱因斯坦：“再多的实验也不一定能够证明我是对的，但只需要一个实验就能证明我是错的。”</p>
+<p>我们永远也没法知道某个假设是否绝对正确，我们只能验证它和我们的观察的一致性。</p>
+<h4 id="1-4-2-观察"><a href="#1-4-2-观察" class="headerlink" title="1.4.2 观察"></a>1.4.2 观察</h4><p>计算性任务的困难程度可以用问题的规模来衡量。使用不同的规模来观察计算性任务的变化。</p>
+<h4 id="1-4-3-数学模型"><a href="#1-4-3-数学模型" class="headerlink" title="1.4.3 数学模型"></a>1.4.3 数学模型</h4><p>尽管很多复杂因素影响运行时间，原则上我们仍然可能构造出一个数学模型来描述任意程序的运行时间。Knuth认为，一个程序运行的总时间主要和两点有关：</p>
+<ul>
+<li>执行每条语句的耗时；</li>
+<li>执行每条语句的频率。</li>
+</ul>
+<p>前者取决于计算机、编译器和操作系统，后者取决于程序本身和输入。</p>
+<h5 id="1-4-3-1-近似"><a href="#1-4-3-1-近似" class="headerlink" title="1.4.3.1 近似"></a>1.4.3.1 近似</h5><p>首项之后的其他项相对较小，使用约等于号(~)来忽略较小的项。</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>近似</th>
+<th>增长数量级</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>N^3 / 6 + N^2 / 2 + N / 3</td>
+<td>~N^3 / 6</td>
+<td>N^3</td>
+</tr>
+<tr>
+<td>lg N + 1</td>
+<td>~lg N</td>
+<td>lg N</td>
+</tr>
+<tr>
+<td>3</td>
+<td>~3</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<h5 id="1-4-3-2-近似运行时间"><a href="#1-4-3-2-近似运行时间" class="headerlink" title="1.4.3.2 近似运行时间"></a>1.4.3.2 近似运行时间</h5><p>许多程序的运行时间都只却决于其中的一小部分指令。</p>
+<h5 id="1-4-3-3-对增长数量级的猜想"><a href="#1-4-3-3-对增长数量级的猜想" class="headerlink" title="1.4.3.3 对增长数量级的猜想"></a>1.4.3.3 对增长数量级的猜想</h5><p><img src="https://zhenruyi.github.io/images/algo-learn03Algorithms01Foundation1.png"></p>
+<h4 id="1-4-4-增长数量级的分类"><a href="#1-4-4-增长数量级的分类" class="headerlink" title="1.4.4 增长数量级的分类"></a>1.4.4 增长数量级的分类</h4><p><img src="https://zhenruyi.github.io/images/algo-learn03Algorithms01Foundation2.png"></p>
+<ul>
+<li>常数级别：不依赖于N。</li>
+<li>对数级别：比常数时间稍慢，对数的底数和增长的数量级无关。</li>
+<li>线性级别：单个for循环，增长时线性的，和N成正比。</li>
+<li>线性对数级别：常见的是归并排序和快排。</li>
+<li>平方级别：两个嵌套的for循环。</li>
+<li>立方级别：三个嵌套的for循环。</li>
+<li>指数界别：不可能用于解决大规模的问题，但某些领域也很重要。</li>
+</ul>
+<h4 id="1-4-7-注意事项"><a href="#1-4-7-注意事项" class="headerlink" title="1.4.7 注意事项"></a>1.4.7 注意事项</h4><ul>
+<li>大常数：公式的系数如果很小就可以忽略，但是很大就不要忽略。</li>
+<li>非决定性的内循环：有些程序在内循环之外也有大量指令需要考虑。</li>
+<li>指令时间：每条指令所需的时间不同。</li>
+<li>系统因素：只是计算机争夺资源的众多应用程序之一。</li>
+<li>不分伯仲：有些程序员喜欢投入大量精力找出“最佳”实现，这类工作最好还是留给专家。</li>
+</ul>
+<hr>
+<h3 id="1-5-案例研究：union-find算法"><a href="#1-5-案例研究：union-find算法" class="headerlink" title="1.5 案例研究：union-find算法"></a>1.5 案例研究：union-find算法</h3><p>合并-查找，应用于连通性问题当中。</p>
+<h4 id="union-find的实现"><a href="#union-find的实现" class="headerlink" title="union-find的实现"></a>union-find的实现</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> UnionFind <span class="keyword">struct</span> &#123;</span><br><span class="line">	id []<span class="type">int</span></span><br><span class="line">	count <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewUnionFind</span><span class="params">()</span></span> *UnionFind &#123;</span><br><span class="line">	<span class="keyword">return</span> &amp;UnionFind&#123;</span><br><span class="line">		id: <span class="literal">nil</span>,</span><br><span class="line">		count: <span class="number">0</span>,</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(uf *UnionFind)</span></span> Count() <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> uf.count</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(uf *UnionFind)</span></span> Connected(p, q <span class="type">int</span>) <span class="type">bool</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> find(p) == find(q)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(uf *UnionFind)</span></span> find(p <span class="type">int</span>) <span class="type">int</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(uf *UnionFind)</span></span> union(p, q <span class="type">int</span>) &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="union方法和find方法的实现"><a href="#union方法和find方法的实现" class="headerlink" title="union方法和find方法的实现"></a>union方法和find方法的实现</h4><h5 id="quick-find算法"><a href="#quick-find算法" class="headerlink" title="quick-find算法"></a>quick-find算法</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(uf *UnionFind)</span></span> QuickFindFind(p <span class="type">int</span>) <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> uf.id[p]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将p和q归并到相同的分量中</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(uf *UnionFind)</span></span> QuickFindUnion(p, q <span class="type">int</span>) &#123;</span><br><span class="line">	<span class="comment">// p和q的分量</span></span><br><span class="line">	pID := uf.find(p)</span><br><span class="line">	qID := uf.find(q)</span><br><span class="line">	<span class="comment">// 相同则返回</span></span><br><span class="line">	<span class="keyword">if</span> pID == qID &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 将和p分量相同的变成q的分量</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(uf.id); i++ &#123;</span><br><span class="line">		<span class="keyword">if</span> uf.id[i] == pID &#123;</span><br><span class="line">			uf.id[i] = qID</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 分量减少一个</span></span><br><span class="line">	uf.count--</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>find()的操作很快，但是quick-find算法无法处理大型问题，因为对于每一次union都需要扫描整个id切片。</p>
+<h5 id="quick-union算法"><a href="#quick-union算法" class="headerlink" title="quick-union算法"></a>quick-union算法</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(uf *UnionFind)</span></span> QuickUnionFind(p <span class="type">int</span>) <span class="type">int</span> &#123;</span><br><span class="line">	<span class="comment">// 找到根触点</span></span><br><span class="line">	<span class="keyword">for</span> p != uf.id[p] &#123;</span><br><span class="line">		p = uf.id[p]</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> p</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(uf *UnionFind)</span></span> QuickUnionUnion(p, q <span class="type">int</span>) &#123;</span><br><span class="line">	pRoot := uf.QuickUnionFind(p)</span><br><span class="line">	qRoot := uf.QuickUnionFind(q)</span><br><span class="line">	<span class="keyword">if</span> pRoot == qRoot &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">// 只需要修改根触点的指向就行</span></span><br><span class="line">	uf.id[pRoot] = qRoot</span><br><span class="line">	uf.count--</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="加权quick-union算法"><a href="#加权quick-union算法" class="headerlink" title="加权quick-union算法"></a>加权quick-union算法</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> WeightedQuickUnionUF <span class="keyword">struct</span> &#123;</span><br><span class="line">	id []<span class="type">int</span></span><br><span class="line">	size []<span class="type">int</span></span><br><span class="line">	count <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(uf *WeightedQuickUnionUF)</span></span> Count() <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> uf.count</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(uf *WeightedQuickUnionUF)</span></span> connected(p, q <span class="type">int</span>) <span class="type">bool</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> uf.find(q) == uf.find(q)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(uf *WeightedQuickUnionUF)</span></span> find(p <span class="type">int</span>) <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">for</span> p != uf.id[p] &#123;</span><br><span class="line">		p = uf.id[p]</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> p</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(uf *WeightedQuickUnionUF)</span></span> union(p, q <span class="type">int</span>) &#123;</span><br><span class="line">	pRoot := uf.find(p)</span><br><span class="line">	qRoot := uf.find(q)</span><br><span class="line">	<span class="keyword">if</span> pRoot == qRoot &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> uf.size[qRoot] &lt; uf.size[pRoot] &#123;</span><br><span class="line">		uf.id[qRoot] = pRoot</span><br><span class="line">		uf.size[pRoot] += uf.size[qRoot]</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		uf.id[pRoot] = qRoot</span><br><span class="line">		uf.size[qRoot] += uf.size[pRoot]</span><br><span class="line">	&#125;</span><br><span class="line">	uf.count--</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="性能特点"><a href="#性能特点" class="headerlink" title="性能特点"></a>性能特点</h5><table>
+<thead>
+<tr>
+<th>算法</th>
+<th>union()</th>
+<th>find()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>quick-find</td>
+<td>N</td>
+<td>1</td>
+</tr>
+<tr>
+<td>quick-union</td>
+<td>树的高度</td>
+<td>树的高度</td>
+</tr>
+<tr>
+<td>weighted quick-union</td>
+<td>log</td>
+<td>log</td>
+</tr>
+</tbody></table>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/learn/" rel="tag"># learn</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/algo/algorithms0/" rel="prev" title="《算法》笔记：全书框架">
+                  <i class="fa fa-chevron-left"></i> 《算法》笔记：全书框架
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/algo/algorithms2/" rel="next" title="《算法》笔记：第2章  排序">
+                  《算法》笔记：第2章  排序 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">luyizheng</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdn.jsdelivr.net/npm/pdfobject@2.2.7/pdfobject.min.js","integrity":"sha256-ph3Dk89VmuTVXG6x/RDzk53SU9LPdAh1tpv0UvnDZ2I="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

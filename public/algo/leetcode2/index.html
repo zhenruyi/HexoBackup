@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon3/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon3/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon3/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon3/android-chrome-384x384.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhenruyi.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":20,"offset":45},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":null,"post_header":null,"post_body":null,"coll_header":null,"sidebar":"fadeInDown"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="2022年2月刷的几类Leetcode题：Binary Search，Two Pointers，Sliding Window。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2022年2月刷的几类Leetcode题">
+<meta property="og:url" content="https://zhenruyi.github.io/algo/leetcode2/index.html">
+<meta property="og:site_name" content="zhenruyi">
+<meta property="og:description" content="2022年2月刷的几类Leetcode题：Binary Search，Two Pointers，Sliding Window。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-02-01T15:00:00.000Z">
+<meta property="article:modified_time" content="2022-04-16T23:00:12.200Z">
+<meta property="article:author" content="luyizheng">
+<meta property="article:tag" content="exec">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://zhenruyi.github.io/algo/leetcode2/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://zhenruyi.github.io/algo/leetcode2/","path":"algo/leetcode2/","title":"2022年2月刷的几类Leetcode题"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2022年2月刷的几类Leetcode题 | zhenruyi</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zhenruyi</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">done is better than perfect</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">7</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">34</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="luyizheng"
+      src="/images/avatar2.jpg">
+  <p class="site-author-name" itemprop="name">luyizheng</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhenruyi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhenruyi" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/jugenlu" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;jugenlu" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://m.weibo.cn/u/3017941811" title="Weibo → https:&#x2F;&#x2F;m.weibo.cn&#x2F;u&#x2F;3017941811" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:cs19b022@163.com" title="E-Mail → mailto:cs19b022@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/24837978" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;24837978" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>Bilibili</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://zhenruyi.github.io/images/OfficialAccountCode.jpg" title="WechatOfficial → https:&#x2F;&#x2F;zhenruyi.github.io&#x2F;images&#x2F;OfficialAccountCode.jpg"><i class="fab fa-weixin fa-fw"></i>WechatOfficial</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      they are very lovely
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/672346917/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;672346917&#x2F;" rel="noopener" target="_blank">AVA向晚</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/672353429/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;672353429&#x2F;" rel="noopener" target="_blank">Bella贝拉</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/351609538/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;351609538&#x2F;" rel="noopener" target="_blank">Carol珈乐</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/672328094/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;672328094&#x2F;" rel="noopener" target="_blank">Diana嘉然</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/672342685/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;672342685&#x2F;" rel="noopener" target="_blank">Eileen乃琳</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zhenruyi.github.io/algo/leetcode2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+      <meta itemprop="name" content="luyizheng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhenruyi">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2022年2月刷的几类Leetcode题 | zhenruyi">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2022年2月刷的几类Leetcode题
+        </h1>
+
+        <div class="post-meta-container">
+
+        
+
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-02-01 23:00:00" itemprop="dateCreated datePublished" datetime="2022-02-01T23:00:00+08:00">2022-02-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-04-17 07:00:12" itemprop="dateModified" datetime="2022-04-17T07:00:12+08:00">2022-04-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/algo/" itemprop="url" rel="index"><span itemprop="name">algo</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>2022年2月刷的几类Leetcode题：Binary Search，Two Pointers，Sliding Window。</p>
+<span id="more"></span>
+
+
+
+<p>Algorithm 1</p>
+<ol>
+<li><p>Binary Search</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">总结</span><br><span class="line"><span class="bullet">1.</span> 用于查找 某个元素的位置 不产生新的集合</span><br><span class="line"><span class="bullet">2.</span> 输入：已经排好序的集合 目标元素</span><br><span class="line"><span class="bullet">3.</span> 输出：目标元素的位置</span><br><span class="line"><span class="bullet">4.</span> 时间复杂度：O(log n)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">题目</span><br><span class="line"><span class="number">1.</span> Binary Search</span><br><span class="line">Given <span class="keyword">an</span> array <span class="keyword">of</span> integers nums which is sorted <span class="keyword">in</span> <span class="keyword">ascending</span> order, <span class="keyword">and</span> <span class="keyword">an</span> <span class="keyword">integer</span> target, <span class="built_in">write</span> <span class="keyword">a</span> <span class="function"><span class="keyword">function</span> <span class="title">to</span> <span class="title">search</span> <span class="title">target</span> <span class="title">in</span> <span class="title">nums</span>. <span class="title">If</span> <span class="title">target</span> <span class="title">exists</span>, <span class="title">then</span> <span class="title">return</span> <span class="title">its</span> <span class="title">index</span>. <span class="title">Otherwise</span>, <span class="title">return</span> <span class="number">-1.</span></span></span><br><span class="line">经典的二分查找</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> First Bad Version</span><br><span class="line">Suppose you have n versions [<span class="number">1</span>, <span class="number">2</span>, ..., n] <span class="keyword">and</span> you want <span class="built_in">to</span> find out <span class="keyword">the</span> <span class="keyword">first</span> bad <span class="literal">one</span>, which causes all <span class="keyword">the</span> following ones <span class="built_in">to</span> be bad.</span><br><span class="line">You are given <span class="keyword">an</span> API bool isBadVersion(<span class="built_in">version</span>) which returns whether <span class="built_in">version</span> is bad. Implement <span class="keyword">a</span> <span class="function"><span class="keyword">function</span> <span class="title">to</span> <span class="title">find</span> <span class="title">the</span> <span class="title">first</span> <span class="title">bad</span> <span class="title">version</span>. <span class="title">You</span> <span class="title">should</span> <span class="title">minimize</span> <span class="title">the</span> <span class="title">number</span> <span class="title">of</span> <span class="title">calls</span> <span class="title">to</span> <span class="title">the</span> <span class="title">API</span>.</span></span><br><span class="line">提示：先把具体情况列出来，然后分析<span class="keyword">mid</span>在不同情况下left和<span class="literal">right</span>的变化情况</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> Search Insert Position</span><br><span class="line">Given <span class="keyword">a</span> sorted array <span class="keyword">of</span> distinct integers <span class="keyword">and</span> <span class="keyword">a</span> target <span class="built_in">value</span>, <span class="literal">return</span> <span class="keyword">the</span> index <span class="keyword">if</span> <span class="keyword">the</span> target is found. If <span class="keyword">not</span>, <span class="literal">return</span> <span class="keyword">the</span> index where <span class="keyword">it</span> would be <span class="keyword">if</span> <span class="keyword">it</span> were inserted <span class="keyword">in</span> order.</span><br><span class="line">You must <span class="built_in">write</span> <span class="keyword">an</span> algorithm <span class="keyword">with</span> O(<span class="built_in">log</span> n) runtime complexity.</span><br><span class="line">情况很多，所以可以返回<span class="literal">right</span></span><br></pre></td></tr></table></figure></li>
+<li><p>Two Pointers</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">总结</span><br><span class="line"><span class="bullet">1.</span> 会产生一个新的集合，然后输出这个集合。</span><br><span class="line"><span class="bullet">2.</span> 集合可以分段，例如分成正负数两段。</span><br><span class="line"><span class="bullet">3.</span> 输入：一个集合</span><br><span class="line"><span class="bullet">4.</span> 输出：符合要求的集合</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">题目</span><br><span class="line">1. Squares of a Sorted Array</span><br><span class="line">Given an integer<span class="built_in"> array </span>nums sorted in non-decreasing order,<span class="built_in"> return </span>an<span class="built_in"> array </span>of the squares of each number sorted in non-decreasing order.</span><br><span class="line">Input: nums = [-4,-1,0,3,10]</span><br><span class="line">Output: [0,1,9,16,100]</span><br><span class="line">分成正负两段，然后分别用不同的指针处理。</span><br><span class="line">知道集合长度的话，不一定要正序的，还可以倒序处理。</span><br><span class="line"></span><br><span class="line">2. Rotate Array</span><br><span class="line">Given an array, rotate the<span class="built_in"> array </span>to the right by k steps, where k is non-negative.</span><br><span class="line">Input: nums = [1,2,3,4,5,6,7], k = 3</span><br><span class="line">Output: [5,6,7,1,2,3,4]</span><br><span class="line">小心k&gt;n，处理：k = k % n</span><br><span class="line">一种方法是建立一个临时数组，长度为k</span><br><span class="line">另一种方法是，分成1234和567两段，然后分别逆转</span><br><span class="line"></span><br><span class="line">3. Move Zeroes</span><br><span class="line">Given an integer<span class="built_in"> array </span>nums,<span class="built_in"> move </span>all 0&#x27;s to the end of it while maintaining the relative order of the non-zero elements.</span><br><span class="line">一种方法是先覆盖零，最后在结尾补充。用两个指针（一个指向遍历到的位置，一个是除去零该元素应该在的位置）。</span><br><span class="line">另一种方法是两个指针，一个指向零，另一个遍历，如果遇到非零，则和当前零交换位置。</span><br><span class="line"></span><br><span class="line">4. Two Sum II - Input Array Is Sorted</span><br><span class="line">给一个已经排好序的数组，然后找到两个数之和为目标数的位置。</span><br><span class="line"></span><br><span class="line">5. Middle of the Linked List</span><br><span class="line">快慢指针</span><br></pre></td></tr></table></figure></li>
+<li><p>Sliding Window</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">总结</span><br><span class="line"><span class="bullet">1.</span> 窗口：一组连续元素</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">题目</span><br><span class="line"><span class="number">1.</span> Longest Substring Without Repeating Characters</span><br><span class="line">Given a <span class="built_in">string</span> s, find <span class="keyword">the</span> <span class="built_in">length</span> <span class="keyword">of</span> <span class="keyword">the</span> longest substring <span class="keyword">without</span> repeating <span class="built_in">characters</span>.</span><br><span class="line">用一个数组记录元素出现的次数，如果重复的话，则窗口移动。</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> Permutation <span class="keyword">in</span> String</span><br><span class="line">Given two strings s1 <span class="keyword">and</span> s2, <span class="literal">return</span> <span class="literal">true</span> <span class="keyword">if</span> s2 <span class="keyword">contains</span> a permutation <span class="keyword">of</span> s1, <span class="keyword">or</span> <span class="literal">false</span> otherwise.</span><br><span class="line">In other <span class="built_in">words</span>, <span class="literal">return</span> <span class="literal">true</span> <span class="keyword">if</span> one <span class="keyword">of</span> s1&#x27;s permutations <span class="keyword">is</span> <span class="keyword">the</span> substring <span class="keyword">of</span> s2.</span><br><span class="line">两个数组存字符串，最后不断移动窗口，找到数组<span class="number">1</span>==数组<span class="number">2</span>的地方。</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/exec/" rel="tag"># exec</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/sci/sec1/" rel="prev" title="计算机安全学的期末复习">
+                  <i class="fa fa-chevron-left"></i> 计算机安全学的期末复习
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/tech/git2/" rel="next" title="Git常用命令备忘">
+                  Git常用命令备忘 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">luyizheng</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdn.jsdelivr.net/npm/pdfobject@2.2.7/pdfobject.min.js","integrity":"sha256-ph3Dk89VmuTVXG6x/RDzk53SU9LPdAh1tpv0UvnDZ2I="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon3/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon3/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon3/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon3/android-chrome-384x384.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhenruyi.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":20,"offset":45},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":null,"post_header":null,"post_body":null,"coll_header":null,"sidebar":"fadeInDown"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="NVIDIA Reflex 是 NVIDIA 公司开发的降低游戏系统延迟的技术，它包含硬件和软件两部分，其中硬件包括 GPU 和 G-SYNC 显示器，软件包括可测量和降低竞技游戏延迟技术。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NVIDIA Reflex 技术介绍">
+<meta property="og:url" content="https://zhenruyi.github.io/other/intro1/index.html">
+<meta property="og:site_name" content="zhenruyi">
+<meta property="og:description" content="NVIDIA Reflex 是 NVIDIA 公司开发的降低游戏系统延迟的技术，它包含硬件和软件两部分，其中硬件包括 GPU 和 G-SYNC 显示器，软件包括可测量和降低竞技游戏延迟技术。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zhenruyi.github.io/images/other01NIVIDIAReflex1.png">
+<meta property="og:image" content="https://zhenruyi.github.io/images/other01NIVIDIAReflex2.jpeg">
+<meta property="og:image" content="https://zhenruyi.github.io/images/other01NIVIDIAReflex3.png">
+<meta property="og:image" content="https://zhenruyi.github.io/images/other01NIVIDIAReflex4.png">
+<meta property="og:image" content="https://zhenruyi.github.io/images/other01NIVIDIAReflex5.png">
+<meta property="og:image" content="https://zhenruyi.github.io/images/other01NIVIDIAReflex6.png">
+<meta property="og:image" content="https://zhenruyi.github.io/images/other01NIVIDIAReflex7.jpg">
+<meta property="og:image" content="https://zhenruyi.github.io/images/other01NIVIDIAReflex8.png">
+<meta property="og:image" content="https://zhenruyi.github.io/images/other01NIVIDIAReflex9.png">
+<meta property="og:image" content="https://zhenruyi.github.io/images/other01NIVIDIAReflex10.png">
+<meta property="article:published_time" content="2020-12-31T17:02:03.000Z">
+<meta property="article:modified_time" content="2022-04-16T23:08:36.905Z">
+<meta property="article:author" content="luyizheng">
+<meta property="article:tag" content="intro">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhenruyi.github.io/images/other01NIVIDIAReflex1.png">
+
+
+<link rel="canonical" href="https://zhenruyi.github.io/other/intro1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://zhenruyi.github.io/other/intro1/","path":"other/intro1/","title":"NVIDIA Reflex 技术介绍"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>NVIDIA Reflex 技术介绍 | zhenruyi</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zhenruyi</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">done is better than perfect</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">7</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">34</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="luyizheng"
+      src="/images/avatar2.jpg">
+  <p class="site-author-name" itemprop="name">luyizheng</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhenruyi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhenruyi" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/jugenlu" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;jugenlu" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://m.weibo.cn/u/3017941811" title="Weibo → https:&#x2F;&#x2F;m.weibo.cn&#x2F;u&#x2F;3017941811" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:cs19b022@163.com" title="E-Mail → mailto:cs19b022@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/24837978" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;24837978" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>Bilibili</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://zhenruyi.github.io/images/OfficialAccountCode.jpg" title="WechatOfficial → https:&#x2F;&#x2F;zhenruyi.github.io&#x2F;images&#x2F;OfficialAccountCode.jpg"><i class="fab fa-weixin fa-fw"></i>WechatOfficial</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      they are very lovely
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/672346917/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;672346917&#x2F;" rel="noopener" target="_blank">AVA向晚</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/672353429/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;672353429&#x2F;" rel="noopener" target="_blank">Bella贝拉</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/351609538/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;351609538&#x2F;" rel="noopener" target="_blank">Carol珈乐</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/672328094/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;672328094&#x2F;" rel="noopener" target="_blank">Diana嘉然</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/672342685/" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;672342685&#x2F;" rel="noopener" target="_blank">Eileen乃琳</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zhenruyi.github.io/other/intro1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+      <meta itemprop="name" content="luyizheng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhenruyi">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="NVIDIA Reflex 技术介绍 | zhenruyi">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          NVIDIA Reflex 技术介绍
+        </h1>
+
+        <div class="post-meta-container">
+
+        
+
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-01-01 01:02:03" itemprop="dateCreated datePublished" datetime="2021-01-01T01:02:03+08:00">2021-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-04-17 07:08:36" itemprop="dateModified" datetime="2022-04-17T07:08:36+08:00">2022-04-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/other/" itemprop="url" rel="index"><span itemprop="name">other</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>NVIDIA Reflex 是 NVIDIA 公司开发的降低游戏系统延迟的技术，它包含硬件和软件两部分，其中硬件包括 GPU 和 G-SYNC 显示器，软件包括可测量和降低竞技游戏延迟技术。</p>
+<span id="more"></span>
+
+
+
+
+
+<p>NVIDIA Reflex 是 NVIDIA 公司开发的降低游戏系统延迟的技术，它包含硬件和软件两部分，其中硬件包括 GPU 和 G-SYNC 显示器，软件包括可测量和降低竞技游戏延迟技术。</p>
+<p><img src="https://zhenruyi.github.io/images/other01NIVIDIAReflex1.png"></p>
+<div align='center' ><font size='5'>NVIDIA 为什么要开发 Reflex？</font></div>
+
+
+
+<p>我从小就爱玩电子游戏，小时候玩的电子游戏都是《吃豆人》《魂斗罗》这样的闯关型，后来电子游戏从以闯关为主流转变为以对抗为主流，电子竞技成为大多数人的选择。电竞游戏在近十年得到了飞速的发展，涌现出的现象级游戏就有穿越火线（CF）、英雄联盟（LOL）、绝地求生（吃鸡）等。官方介绍文章中提到的“电竞游戏‘英雄联盟 ’在 2019 年的冠军赛中吸引了 1 亿多名观众”这句话里出现的数据，我没有查到相关的资料，但是英雄联盟官方统计到了总决赛观看人数的峰值，这个数字在2019年这个数据是4300多万，而到了2021年则是7300多万。</p>
+<p>观看人数的增多侧面反映了游戏玩家的增多和玩家对游戏热情的提高，游戏体验就成了游戏里无法逃避的问题。对于玩家来说，降低延迟至关重要，这样能够保证主机和外设更快响应玩家的操作，从而让玩家迅速发现敌人、击毙敌人，提高玩家的成绩。我要补充的是，系统延迟还能影响玩家的心情、心态，进而影响玩家的身体和心理健康。所以，面对 NVIDIA Reflex 这样降低延迟的技术，就像救玩家于水火之中，我们对此的第一印象应该是：好好好！然后再重回理性，来问这样的好东西贵不贵，思考自己需不需要。</p>
+<img src="https://zhenruyi.github.io/images/other01NIVIDIAReflex2.jpeg" style="zoom:50%;" />
+
+<p>NVIDIA 开发 Reflex 就是为了降低系统延迟，降低系统延迟意味着玩家有更多的反应时间，和更多的操作空间，从而提高玩家的成绩。这正中电竞玩家的下怀，提高自己的成绩带来的满足感，就像被人表扬了一样。玩家们愿意买账的话，这个技术就有意义，NVIDIA 当然希望自己的显卡能卖得更好。</p>
+<div align='center' ><font size='5'>什么是延迟？ </font></div>
+
+
+
+<p>在研究 NVIDIA Reflex 技术之前，首先要了解什么是延迟。延迟是命令下达之后，到这项命令处理完成之间所经历的时间间隔。延迟的出现是由于在完成命令的过程中，命令要经过多次处理，才能最终实现，而期间的每一步都要花费时间，累计起来的时间间隔就成了不可忽视的影响，于是延迟变成了影响电竞游戏体验的关键。延迟又可以细分为网络延迟和系统延迟。</p>
+<p>网络延迟即网络响应时间，既然叫网络延迟，当然和网络有关，是客户端和服务器完成数据交换所需的时间。玩家在自己的主机（客户端）上操作，之后客户端会通过网络把数据传到服务器，服务器通过汇总每个玩家执行的操作，计算处理之后，又把结果通过网络返还给所有的客户端，数据在网络上传输的这段时间称为网络延迟。网络延迟与网络环境有关，通常被称为 ping 值，以英雄联盟为例，它出现在画面的右上角。</p>
+<p><img src="https://zhenruyi.github.io/images/other01NIVIDIAReflex3.png"></p>
+<div align='center' ><font size='5'>系统延迟：延迟的一种 </font></div>
+
+
+
+<p>现在详细介绍系统延迟。系统延迟就是玩家在鼠标或者键盘进行操作到显示器产生相应变化之间的时间。这期间玩家的操作会经过外设、CPU、GPU和显示器的处理，最终完成这项操作。系统延迟不涉及网络，不需要和服务器交互，即没有网络延迟，仅仅与玩家的外设、主机和显示器相关。系统延迟包含三部分：</p>
+<ul>
+<li><p>外设延迟</p>
+<p>  ​        外设将玩家发出的指令传给主机，知道被主机接收，这个时间间隔称为外设延迟。外设延迟经过外设内置硬件和外设 USB 硬件的处理，最终到达主机。外设与主机相连的接口叫做 USB（通用串行总线），因为外设操作的突发性和紧急性，CPU 通过中断方式来响应外设的请求。操作系统的响应过程是这样的：操作系统持续监听外设控制器，当外设产生数据之后，通过USB传输数据到外设控制器的缓存中，外设控制器通过中断线向 CPU 发送中断请求，CPU 响应中断指令，到外设控制器取数据。</p>
+</li>
+<li><p>PC 延迟</p>
+<p>  ​        主机对数据进行传送以及处理所需的时间。PC 延迟在下文会详细分析。</p>
+</li>
+<li><p>显示延迟</p>
+<p>  ​        显示器从 GPU 接收数据之后到呈现图形所需要的时间。GPU 完成对图形完成渲染之后，接着对这些图形进行合成。合成完成后，显示器接收到了 GPU 传输的信号，就开始接收从 GPU 传送过来的数据，这些数据会指导显示器呈现图像，显示器上的液晶会进行暗/亮变化，最终绘制出图像。</p>
+</li>
+</ul>
+<p><img src="https://zhenruyi.github.io/images/other01NIVIDIAReflex4.png"></p>
+<div align='center' ><font size='5'>系统延迟里的 PC 延迟 </font></div>
+
+
+
+<p>如前所述，PC 延迟是在主机内部产生的，是数据在主机内部进行传送以及处理所需要的时间。在主机内部，外设传来的指令通过 USB 软件（USB 驱动）进入到操作系统中，然后便会对游戏进行相应的改变，接着将对游戏做出的改变交给图形驱动进行分组，最后提交给 GPU 进行渲染、合成，以待显示器显示出改变后的画面。对游戏做出相应改变产生的延迟叫做游戏延迟，GPU 渲染、合成产生的延迟叫做渲染延迟。下面分别介绍游戏延迟和渲染延迟：</p>
+<ul>
+<li><p>游戏延迟</p>
+<p>  ​        外设的指令进入操作系统之后，CPU 开始着手按着指令对游戏进行相应的改变，以待提交给GPU渲染，这个过程就是游戏延迟。在这个过程中，CPU首先根据外设的指令在游戏中采样，由于CPU的调度算法不同，这个阶段产生的延迟也不同，接着按照指令对游戏进行更新，游戏更新之后，为了把更新内容显示出来，CPU要记录相关项，把渲染作业发送给GPU，发送过程还需要经过图形驱动。</p>
+<p>  ​        这个过程不得不提到CPU和GPU之间的调度，它们之间通过系统总线交换数据，过程是这样的：</p>
+<ol>
+<li><p> CPU成功读取数据，分离出图像数据，放到系统内存中；</p>
+</li>
+<li><p> CPU通过系统总线，把数据从系统内存拷贝到GPU的显存里；</p>
+</li>
+<li><p>GPU从队列里拿出一个任务进行渲染，渲染好的数据放回系统内存中。这个时候CPU还会定期询问GPU的情况；</p>
+</li>
+</ol>
+</li>
+<li><p>渲染延迟</p>
+<p>  ​        待渲染的数据排队，最终进入GPU直到渲染完毕所需要的时间。在图形驱动提交渲染作业后，该渲染作业会进入GPU的渲染队列。渲染队列是存放GPU来不及处理的数据，能让GPU始终都处在运行状态，以提高GPU的吞吐量。GPU是图形处理器，能加速对图形的渲染和填充，虽然GPU能够提高图形处理速度，但是也更耗电。GPU渲染过程如下：</p>
+<ol>
+<li>应用阶段：这个阶段由CPU完成，对数据进行处理，并把这些数据的渲染状态传给GPU；</li>
+<li>几何阶段：把CPU发来的数据进一步处理，这个阶段又可以进一步划分为若干个流水线阶段，包括着色、投影、裁剪和屏幕映射；</li>
+<li>光栅化阶段：把几何阶段得到的顶点，转化成可以在显示器上显示的像素。</li>
+</ol>
+</li>
+</ul>
+<p><img src="https://zhenruyi.github.io/images/other01NIVIDIAReflex5.png"></p>
+<div align='center' ><font size='5'>Reflex 采用的技术 </font></div>
+
+
+
+<p>了解了 NVIDIA Reflex 要解决的问题，下面来了解一下 NVIDIA Reflex 采用什么技术来解决。它采用了两项新技术：</p>
+<ul>
+<li><p>  NVIDIA Reflex SDK：面向游戏开发者的一套新API；</p>
+</li>
+<li><p>NVIDIA Reflex延迟分析器：系统延迟测量工具。</p>
+</li>
+</ul>
+<p>官方是这样介绍的：使用Reflex SDK，游戏开发者可以实现低延迟模式，在这种模式下，游戏引擎能够完成即时渲染，从而消除GPU渲染排队现象，减轻受GPU限制的情况下造成的CPU反压。</p>
+<p>什么是反压？反压出现在流水作业中，反压的产生通常是由于短时间内负载高峰导致系统接收数据的速率远高于它处理数据的速率。打个比方，假如上级对下级的压力叫做正压，那么下级对上级的压力就是反压。因为下级处理事情的速度比上级处理事情的速度慢，导致下级拖慢了上级的效率，给上级造成了压力。同理，CPU处理的速度远快于GPU，当渲染队列已经满了之后，CPU的数据无法传到GPU里，而GPU处理速度跟不上，导致CPU被GPU拖慢，这就是CPU反压。</p>
+<p>为了解决GPU反压，NVIDIA 的解决办法就是和游戏开发者合作，提供 Reflex SDK，将CPU和GPU完全同步，GPU直接无缝处理CPU发生的指令，以此达成零渲染序列。也就是说，渲染是即时的，不再出现渲染队列，这样就减轻了CPU反压。减轻了CPU反压，于是就降低了渲染延迟。</p>
+<p>顾名思义，NVIDIA Reflex 延迟分析器就是测量系统延迟的技术，NVIDIA使用自家的G-SYNC显示器，并配合其他外设厂家的外设，能够实现测量系统延迟的功能。在以前，测量系统延迟的成本很高，而且测量时间不够快，导致系统延迟常常被忽视。Reflex延迟分析器改变了这一局限，它的原理就是检测鼠标点击之后，屏幕上显示的像素变化之间的时间。</p>
+<p>总之，NVIDIA Reflex 提供了一整套延迟技术，其中包括低延迟技术和延迟测量工具。</p>
+<div align='center' ><font size='5'>实现Reflex技术 </font></div>
+
+
+
+<p>我们如何在自己的电脑上实现 Reflex 技术？这个技术需要兼容的硬件及软件，分为4部分：</p>
+<ul>
+<li><p>GeForce系列显卡。NVIDIA发布GeForce RTX 30 系列显卡的时候同步推出Reflex 技术，但是这项技术并不单单支持RTX 30 系列，以下几款显卡都支持。</p>
+<p>  <img src="https://zhenruyi.github.io/images/other01NIVIDIAReflex6.png"></p>
+</li>
+<li><p>兼容的游戏。因为Reflex SDK是提供给游戏开发者的，只有开发者使用了SDK，才能实现CPU和GPU完全同步，所以还需要得到游戏开发者的支持。目前兼容的游戏包括APEX英雄、特战英豪、彩虹六号：围攻行动等。</p>
+<p>  <img src="https://zhenruyi.github.io/images/other01NIVIDIAReflex7.jpg"></p>
+</li>
+<li><p>G-SYNC显示器。NVIDIA 推出 Reflex技术的同时，也发布了新一代的G-SYNC显示器，以解决显示延迟的问题。G-SYNC显示器能更好地实现Reflex功能，但是不是必选的。</p>
+<p>  <img src="https://zhenruyi.github.io/images/other01NIVIDIAReflex8.png"></p>
+</li>
+<li><p>兼容的外设。NVIDIA推荐了一批和Reflex技术兼容的外设，这些外设拥有极高的灵敏度，能够配合G-SYNC显示器共同实现延迟测试功能。外设也不是必选的。</p>
+<p>  <img src="https://zhenruyi.github.io/images/other01NIVIDIAReflex9.png"></p>
+</li>
+</ul>
+<p>搭建好以上的环境，就可以使用 NVIDIA Reflex 技术了。</p>
+<div align='center' ><font size='5'>Reflex技术的商业价值 </font></div>
+
+
+
+<p>围绕Reflex技术构成了一个产业生态圈：</p>
+<ul>
+<li>  为游戏开发者提供了一套API，这套NVIDIA Reflex SDK 不需要游戏开发者自己研究，节省了游戏开发商的人力和时间成本。游戏开发者通过使用这项技术，能够改善游戏的体验，增加游戏的流畅性。正是由于这样的高效性，游戏开发商乐意和NVIDIA合作推出新功能。有了游戏开发商的支持，NVIDIA在游戏商业上游站稳了脚跟。</li>
+<li>  要使用NVIDIA Reflex技术，必不可少的配置要求就是要使用NVIDIA家的显卡。这项技术对降低系统延迟有效果，所以NVIDIA调研的游戏玩家，大多数是电竞玩家，这类玩家在挑选显卡的时候，就会首先考虑NVIDIA家的显卡。NVIDIA用技术的升级刺激了显卡的销售。</li>
+<li>  NVIDIA不仅在显卡领域成为了巨头，他拉拢其他外设厂家、显示器厂家组成它商业帝国的护城河。首先推出的是兼容G-SYNC技术的显示器，这类显示器可以和Reflex延迟分析器共同发挥测量系统误差的功能。接着推出了搭配G-SYNC显示器的鼠标，鼠标通过和显示器相连，实现测量系统误差各阶段误差的功能。</li>
+<li>  在宣传阵地上，NVIDIA同时在游戏测评领域和硬件测评领域发力，重点突出Reflex技术降低延迟技术和延迟测量工具两项技术的先进性和高效性，前者能够帮助玩家提高反应速度，增强游戏体验，后者让个人用户测量系统误差成为了可能。</li>
+<li>  在游戏玩家的视角里，要买显卡，只有两种选择：NVIDIA和AMD，就是常说的A卡和N卡。提到NVIDIA的第一印象，可能是高端，而AMD更有性价比。多年来这两个显卡厂家不是55开就是46开，要让玩家选择自己家的显卡，当然自己要有足够的吸引力，也就是要加重砝码，让天平倾向自己这一边。除了硬件要不断升级换代，提高能耗比之外，软件技术也要升级换代。NVIDIA Reflex正中了电竞玩家的下怀。</li>
+</ul>
+<div align='center' ><font size='5'>Reflex 技术的操作系统支持 </font></div>
+
+
+
+<p>该技术的操作系统支持，我没有找到相关的资料，以下是我自己分析的，难免有错误。</p>
+<p>首先要了解操作系统的主要功能是什么？操作系统的主要功能分为五个：</p>
+<ul>
+<li>  进程管理：主要工作是完成进程调度，分配CPU和内存资源；</li>
+<li>  存储管理：合理高效利用磁盘资源；</li>
+<li>  设备管理：对IO设备及其控制器进行管理；</li>
+<li>  文件管理：管理文件的存储和增删改查；</li>
+<li>  作业管理：操作系统对用户发的任务的实现；</li>
+</ul>
+<p>下面我来分析一下，从触发动作与得到响应之间经过了哪些处理，操作系统又是怎么支持的。</p>
+<ol>
+<li> 鼠标点击或者键盘按下，触发动作出现，鼠标或键盘（外设）的设备控制器会将外设数据读入设备控制器的数据寄存器里。（设备管理）</li>
+<li> 外设的设备控制器通过中断控制线向CPU发送一个中断信号，等待CPU的指令。（设备管理：设备传输控制）</li>
+<li> CPU执行中断程序，向设备控制器发送取数据的指令，设备控制器将自己寄存器内的数据放到数据总线上，CPU于是就收到了外设的数据。（进程管理）</li>
+<li> CPU得到了玩家的输入之后，结合游戏的状态，更新游戏的画面（此时游戏是运行在内存之中的），初步处理之后将数据发送给GPU，并对GPU下达指令。（进程管理）</li>
+<li> GPU的功能，甚至显卡的功能，都是通过显卡驱动提供API给CPU调用；显示器也是提供API接口给需要的设备调用的。（进程管理：进程通信IPC）</li>
+<li> 游戏的代码、数据，显卡的驱动，外设驱动，以及所有数据、代码，都由文件组成，都存储在磁盘之中。（存储管理、文件管理）</li>
+<li> 以上过程，包括用户的输入、游戏程序和执行过程中的各种规范，都是一个作业。（作业管理）</li>
+</ol>
+<p>上面是操作被响应的整个过程的操作系统的支持，但不是 Reflex 技术的操作系统支持，因为我不知道 Reflex 技术具体是怎么实现的，下面是我的猜测：</p>
+<ol>
+<li> Reflex 技术的实现集成在了显卡当中，而显卡驱动是要下载安装到磁盘当中的，所以磁盘管理给予了 Reflex 支持，这是最基本的。</li>
+<li> Reflex 技术必定用到进程管理，实现包括进程通信、进程调度、共享内存等功能，因为游戏是一个进程，对游戏的支持也是一个进程。</li>
+<li> Reflex 技术当中的延迟分析器，需要对各种外设和显示器进行管理，所以一定用到了设备管理，以实现设备独立性、设备传输控制。</li>
+</ol>
+<div align='center' ><font size='5'>Reflex 技术的硬件支持 </font></div>
+
+
+
+<p>我上面提到了，要实现Reflex 技术，需要 NVIDIA 特定的显卡（必选），G-SYNC 显示器和兼容的鼠标（非必选），下面我尝试解释一下：</p>
+<ul>
+<li>  首先是显卡，不同的显卡有不同的架构设计，导致了不同的显卡能实现不同的功能，所以 NVIDIA 自己家有的系列支持 Reflex 技术，有的系列不支持就成了很自然的事情。至于其它厂家的显卡能不能支持 Reflex 技术就不得而知了，在商业厮杀这么激烈的环境下，肯定是不能让友商用自己的技术的。</li>
+<li>  G-SYNC显示器为什么说是可选呢？因为它解决的是显示延迟的问题，即为了实现Reflex延迟分析器这个功能。这种显示器内置了延迟分析器，连接指定的电竞鼠标之后，就可以实时而且快速测量系统延时的数据。</li>
+<li>  兼容的鼠标，即指定的鼠标，也是为了实现Reflex延迟分析器的功能。平时我们的鼠标是连接到主板上的USB接口的，但是指定的鼠标是连接到G-SYNC显示器的USB接口上的，这样来实现测量系统延迟的功能。</li>
+</ul>
+<div align='center' ><font size='5'>Reflex 技术实现细节的猜测 </font></div>
+
+
+
+<p>我们知道，由于CPU对数据的处理效率远高于GPU对数据的处理效率，所以GPU设置了一个渲染队列以应对从CPU源源不断传输过来的数据和指令。但是，这不能解决CPU和GPU效率不匹配的问题，导致渲染队列满了。</p>
+<p>因为队列满了，CPU处理好的数据不知道放到哪里，它又不愿意把这些处理好的数据丢弃（我认为无论丢不丢弃，都已经降低了CPU的处理效率），所以CPU拿着这些数据不知所措，停下来等GPU。</p>
+<p>因为要等GPU处理，这个时候CPU是不能处理其他任务的，导致等待CPU处理的任务越来多，CPU的压力越来越大。也就是说，因为被GPU拖累，CPU产生了压力，这叫做CPU受到的反压。</p>
+<p>不可避免地，反压的出现导致了系统延迟（准确的说是其中的PC延迟）的增加。而Reflex的处理方法是打造零渲染序列，清空渲染队列，让CPU直接对接GPU。</p>
+<p>而游戏开发者要做的就是利用Reflex SDK跟CPU进行沟通，让CPU能够与GPU同步，这样就不会出现队列的问题了，CPU发送一个数据，GPU就处理一个数据。这样就消除了CPU受到的反压，降低系统延迟。</p>
+<p>但是我有一个疑问，因为Reflex是NVIDIA开发的，而NVIDIA是显卡厂商，它为什么能够对CPU进行控制，让CPU和GPU相匹配，而不是让GPU和CPU进行匹配。</p>
+<p>所以，一个更合理的猜测是让GPU的脉冲频率增高，以此来适应CPU。而这又导致了矛盾，因为如果提高脉冲就能提高GPU的效率，为什么不让每一个显卡都提高，而是开发Reflex技术来提高呢？难道是为了省电吗？</p>
+<p>以上是对 Reflex SDK 技术实现的猜测，下面对Reflex 延迟分析器的实现进行猜测。</p>
+<p>显示器方面：显示器上内置一个特殊的芯片，芯片实现的功能应该是能够检测特定的画面出现，然后记录这个时间。具体是什么画面则需要游戏开发商通过Reflex SDK 告诉显示器，让显示器看到特定的画面出现反应。</p>
+<p>比如说，官方提到的看到枪口的火焰为一个特定的画面，因为电竞游戏往往是射击游戏。还可以是任务的起跳或者下蹲动作，还可以是切换武器的动作。</p>
+<p>鼠标方面：鼠标通过USB直接和显示器连接，当鼠标进行操作之后，鼠标会发送一个特殊的信号给显示器，显示器收到这个信号之后马上开启计时器，等待对应的画面的出现，当对应的画面出现的时候，停止计时，这个时间就是系统延迟。</p>
+<p><img src="https://zhenruyi.github.io/images/other01NIVIDIAReflex10.png"></p>
+<div align='center' ><font size='5'> 总结 </font></div>
+
+<ol>
+<li> 电竞游戏成为主流，电竞游戏对延迟十分敏感，玩家需要降低延迟的技术。</li>
+<li> 延迟分为网络延迟和系统延迟，网络延迟和网络环境相关，系统延迟和外设、主机、显示器相关。</li>
+<li> NVIDIA Reflex 技术的出现是为了降低系统延迟和测量系统延迟，包括Reflex SDK技术和Reflex 延迟分析器。</li>
+<li> Reflex SDK 提供给游戏开发者使用，令CPU和GPU同步，消除渲染队列，减轻CPU受到的反压，从而降低渲染延迟。</li>
+<li> Reflex 延迟分析器能够测量系统延迟，这需要相关硬件的支持。</li>
+<li> 要在个人计算机上完整实现 Reflex 技术，需要显卡、显示器、外设和游戏同时符合要求。</li>
+<li> Reflex 技术给 NVIDIA 带来了巨大的商业价值。</li>
+<li> Reflex 技术得到了操作系统广泛而且坚定的支持。</li>
+<li> Reflex 技术的实现需要特殊的硬件支持。</li>
+<li> 对 Reflex 技术的实现做了一些猜测。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/intro/" rel="tag"># intro</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/sci/net1/" rel="prev" title="互联网理论的作业">
+                  <i class="fa fa-chevron-left"></i> 互联网理论的作业
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/tech/git1/" rel="next" title="Github仓库初始化">
+                  Github仓库初始化 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">luyizheng</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdn.jsdelivr.net/npm/pdfobject@2.2.7/pdfobject.min.js","integrity":"sha256-ph3Dk89VmuTVXG6x/RDzk53SU9LPdAh1tpv0UvnDZ2I="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
